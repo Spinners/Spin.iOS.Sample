@@ -43,12 +43,18 @@
 		1A184B7E231DC3AE00B0033B /* AppPolicies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A184B7B231DC3AE00B0033B /* AppPolicies.swift */; };
 		1A184B7F231DC3AE00B0033B /* AppEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A184B7C231DC3AE00B0033B /* AppEndpoints.swift */; };
 		1A184B83231DCBD200B0033B /* ListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A184B82231DCBD200B0033B /* ListResponse.swift */; };
+		1A184B86231DD27E00B0033B /* Peoples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A184B85231DD27E00B0033B /* Peoples.swift */; };
 		1AA14F9F231C90CA00B3854F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA14F9E231C90CA00B3854F /* AppDelegate.swift */; };
 		1AA14FA1231C90CA00B3854F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA14FA0231C90CA00B3854F /* SceneDelegate.swift */; };
 		1AA14FA3231C90CA00B3854F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA14FA2231C90CA00B3854F /* ViewController.swift */; };
 		1AA14FA6231C90CA00B3854F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AA14FA4231C90CA00B3854F /* Main.storyboard */; };
 		1AA14FA8231C90CB00B3854F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AA14FA7231C90CB00B3854F /* Assets.xcassets */; };
 		1AA14FAB231C90CC00B3854F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AA14FA9231C90CC00B3854F /* LaunchScreen.storyboard */; };
+		1AEF2CDA231DD78A0061A132 /* Films.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CD9231DD78A0061A132 /* Films.swift */; };
+		1AEF2CDC231DD7E10061A132 /* Starships.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CDB231DD7E10061A132 /* Starships.swift */; };
+		1AEF2CDE231DD8680061A132 /* Vehicles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CDD231DD8680061A132 /* Vehicles.swift */; };
+		1AEF2CE0231DD8B00061A132 /* Planets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CDF231DD8B00061A132 /* Planets.swift */; };
+		1AEF2CE2231DD8EA0061A132 /* Species.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CE1231DD8EA0061A132 /* Species.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -101,6 +107,7 @@
 		1A184B7B231DC3AE00B0033B /* AppPolicies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppPolicies.swift; sourceTree = "<group>"; };
 		1A184B7C231DC3AE00B0033B /* AppEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppEndpoints.swift; sourceTree = "<group>"; };
 		1A184B82231DCBD200B0033B /* ListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListResponse.swift; sourceTree = "<group>"; };
+		1A184B85231DD27E00B0033B /* Peoples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peoples.swift; sourceTree = "<group>"; };
 		1AA14F9B231C90CA00B3854F /* Spin.iOS.Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spin.iOS.Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AA14F9E231C90CA00B3854F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1AA14FA0231C90CA00B3854F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +116,11 @@
 		1AA14FA7231C90CB00B3854F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1AA14FAA231C90CC00B3854F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1AA14FAC231C90CC00B3854F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1AEF2CD9231DD78A0061A132 /* Films.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Films.swift; sourceTree = "<group>"; };
+		1AEF2CDB231DD7E10061A132 /* Starships.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Starships.swift; sourceTree = "<group>"; };
+		1AEF2CDD231DD8680061A132 /* Vehicles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicles.swift; sourceTree = "<group>"; };
+		1AEF2CDF231DD8B00061A132 /* Planets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planets.swift; sourceTree = "<group>"; };
+		1AEF2CE1231DD8EA0061A132 /* Species.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Species.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +238,19 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
+		1A184B84231DD25600B0033B /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				1AEF2CD9231DD78A0061A132 /* Films.swift */,
+				1A184B85231DD27E00B0033B /* Peoples.swift */,
+				1AEF2CDF231DD8B00061A132 /* Planets.swift */,
+				1AEF2CE1231DD8EA0061A132 /* Species.swift */,
+				1AEF2CDB231DD7E10061A132 /* Starships.swift */,
+				1AEF2CDD231DD8680061A132 /* Vehicles.swift */,
+			);
+			path = Business;
+			sourceTree = "<group>";
+		};
 		1AA14F92231C90CA00B3854F = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +271,7 @@
 		1AA14F9D231C90CA00B3854F /* Spin.iOS.Sample */ = {
 			isa = PBXGroup;
 			children = (
+				1A184B84231DD25600B0033B /* Business */,
 				1A184B52231DAC1900B0033B /* Models */,
 				1A184B79231DC39A00B0033B /* Routes */,
 				1A184B5F231DBD2800B0033B /* Services */,
@@ -333,25 +359,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A184B71231DC10900B0033B /* AlamofireNetworkService.swift in Sources */,
+				1AEF2CE0231DD8B00061A132 /* Planets.swift in Sources */,
 				1A184B6B231DBED800B0033B /* Endpoint.swift in Sources */,
 				1A184B62231DBE9400B0033B /* NetworkService.swift in Sources */,
 				1A184B7E231DC3AE00B0033B /* AppPolicies.swift in Sources */,
 				1A184B5C231DBAE900B0033B /* Specie.swift in Sources */,
 				1A184B56231DB75000B0033B /* Film.swift in Sources */,
 				1A184B54231DADDC00B0033B /* People.swift in Sources */,
+				1AEF2CDA231DD78A0061A132 /* Films.swift in Sources */,
 				1A184B7D231DC3AE00B0033B /* AppPaths.swift in Sources */,
 				1A184B6A231DBED800B0033B /* Route.swift in Sources */,
 				1A184B83231DCBD200B0033B /* ListResponse.swift in Sources */,
+				1AEF2CDC231DD7E10061A132 /* Starships.swift in Sources */,
 				1A184B5E231DBBBE00B0033B /* Planet.swift in Sources */,
 				1AA14FA3231C90CA00B3854F /* ViewController.swift in Sources */,
 				1A184B58231DB85700B0033B /* Starship.swift in Sources */,
+				1AEF2CE2231DD8EA0061A132 /* Species.swift in Sources */,
 				1A184B68231DBED800B0033B /* Policy.swift in Sources */,
 				1AA14F9F231C90CA00B3854F /* AppDelegate.swift in Sources */,
 				1A184B7F231DC3AE00B0033B /* AppEndpoints.swift in Sources */,
 				1A184B78231DC2B700B0033B /* Encodable+Dictionary.swift in Sources */,
 				1A184B5A231DB9B200B0033B /* Vehicle.swift in Sources */,
+				1A184B86231DD27E00B0033B /* Peoples.swift in Sources */,
 				1A184B76231DC2A200B0033B /* Route+URLRequestConvertible.swift in Sources */,
 				1A184B69231DBED800B0033B /* Path.swift in Sources */,
+				1AEF2CDE231DD8680061A132 /* Vehicles.swift in Sources */,
 				1AA14FA1231C90CA00B3854F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

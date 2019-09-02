@@ -36,18 +36,3 @@ struct EntityEndpoint<Entity: Decodable>: Endpoint {
     }
 }
 
-struct SearchEndpoint<Entity: Decodable>: Endpoint {
-    typealias RequestModel = NoModel
-    typealias ResponseModel = ListResponse<Entity>
-
-    let prefixPath = ""
-    let path: Path
-    let httpMethod = HTTPMethod.get
-    let parameterEncoding = ParameterEncoding.json
-    let policy: Policy = AppPolicy.unauthenticated
-
-    init(path: Path) {
-        self.path = path
-    }
-}
-

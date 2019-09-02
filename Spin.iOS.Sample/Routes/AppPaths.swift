@@ -6,7 +6,7 @@
 //  Copyright © 2018 Genetec. All rights reserved.
 //
 
-public enum PeoplesPath {
+public enum PeoplePath {
     case peoples
     case people(id: String)
     case peopleSearch(query: String)
@@ -43,7 +43,7 @@ public enum PlanetsPath {
 }
 
 // MARK: - String representation of paths
-extension PeoplesPath: Path {
+extension PeoplePath: Path {
     public var description: String {
         switch self {
         case .peoples:
