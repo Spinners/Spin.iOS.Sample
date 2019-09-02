@@ -55,6 +55,10 @@
 		1AEF2CDE231DD8680061A132 /* Vehicles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CDD231DD8680061A132 /* Vehicles.swift */; };
 		1AEF2CE0231DD8B00061A132 /* Planets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CDF231DD8B00061A132 /* Planets.swift */; };
 		1AEF2CE2231DD8EA0061A132 /* Species.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CE1231DD8EA0061A132 /* Species.swift */; };
+		1AEF2CE6231DDADF0061A132 /* FilmsIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CE5231DDADF0061A132 /* FilmsIntent.swift */; };
+		1AEF2CE8231DDB690061A132 /* FilmsAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CE7231DDB690061A132 /* FilmsAction.swift */; };
+		1AEF2CEA231DDBA90061A132 /* FilmsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CE9231DDBA90061A132 /* FilmsState.swift */; };
+		1AEF2CEC231DDBF00061A132 /* FilmsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CEB231DDBF00061A132 /* FilmsUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -121,6 +125,10 @@
 		1AEF2CDD231DD8680061A132 /* Vehicles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicles.swift; sourceTree = "<group>"; };
 		1AEF2CDF231DD8B00061A132 /* Planets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planets.swift; sourceTree = "<group>"; };
 		1AEF2CE1231DD8EA0061A132 /* Species.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Species.swift; sourceTree = "<group>"; };
+		1AEF2CE5231DDADF0061A132 /* FilmsIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsIntent.swift; sourceTree = "<group>"; };
+		1AEF2CE7231DDB690061A132 /* FilmsAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsAction.swift; sourceTree = "<group>"; };
+		1AEF2CE9231DDBA90061A132 /* FilmsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsState.swift; sourceTree = "<group>"; };
+		1AEF2CEB231DDBF00061A132 /* FilmsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				1A184B84231DD25600B0033B /* Business */,
+				1AEF2CE3231DD9ED0061A132 /* Features */,
 				1A184B52231DAC1900B0033B /* Models */,
 				1A184B79231DC39A00B0033B /* Routes */,
 				1A184B5F231DBD2800B0033B /* Services */,
@@ -284,6 +293,25 @@
 				1AA14FAC231C90CC00B3854F /* Info.plist */,
 			);
 			path = Spin.iOS.Sample;
+			sourceTree = "<group>";
+		};
+		1AEF2CE3231DD9ED0061A132 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				1AEF2CE4231DDA0A0061A132 /* Films */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		1AEF2CE4231DDA0A0061A132 /* Films */ = {
+			isa = PBXGroup;
+			children = (
+				1AEF2CE5231DDADF0061A132 /* FilmsIntent.swift */,
+				1AEF2CEB231DDBF00061A132 /* FilmsUseCase.swift */,
+				1AEF2CE7231DDB690061A132 /* FilmsAction.swift */,
+				1AEF2CE9231DDBA90061A132 /* FilmsState.swift */,
+			);
+			path = Films;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,6 +391,7 @@
 				1A184B6B231DBED800B0033B /* Endpoint.swift in Sources */,
 				1A184B62231DBE9400B0033B /* NetworkService.swift in Sources */,
 				1A184B7E231DC3AE00B0033B /* AppPolicies.swift in Sources */,
+				1AEF2CE6231DDADF0061A132 /* FilmsIntent.swift in Sources */,
 				1A184B5C231DBAE900B0033B /* Specie.swift in Sources */,
 				1A184B56231DB75000B0033B /* Film.swift in Sources */,
 				1A184B54231DADDC00B0033B /* People.swift in Sources */,
@@ -372,18 +401,21 @@
 				1A184B83231DCBD200B0033B /* ListResponse.swift in Sources */,
 				1AEF2CDC231DD7E10061A132 /* Starships.swift in Sources */,
 				1A184B5E231DBBBE00B0033B /* Planet.swift in Sources */,
+				1AEF2CEC231DDBF00061A132 /* FilmsUseCase.swift in Sources */,
 				1AA14FA3231C90CA00B3854F /* ViewController.swift in Sources */,
 				1A184B58231DB85700B0033B /* Starship.swift in Sources */,
 				1AEF2CE2231DD8EA0061A132 /* Species.swift in Sources */,
 				1A184B68231DBED800B0033B /* Policy.swift in Sources */,
 				1AA14F9F231C90CA00B3854F /* AppDelegate.swift in Sources */,
 				1A184B7F231DC3AE00B0033B /* AppEndpoints.swift in Sources */,
+				1AEF2CEA231DDBA90061A132 /* FilmsState.swift in Sources */,
 				1A184B78231DC2B700B0033B /* Encodable+Dictionary.swift in Sources */,
 				1A184B5A231DB9B200B0033B /* Vehicle.swift in Sources */,
 				1A184B86231DD27E00B0033B /* Peoples.swift in Sources */,
 				1A184B76231DC2A200B0033B /* Route+URLRequestConvertible.swift in Sources */,
 				1A184B69231DBED800B0033B /* Path.swift in Sources */,
 				1AEF2CDE231DD8680061A132 /* Vehicles.swift in Sources */,
+				1AEF2CE8231DDB690061A132 /* FilmsAction.swift in Sources */,
 				1AA14FA1231C90CA00B3854F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
