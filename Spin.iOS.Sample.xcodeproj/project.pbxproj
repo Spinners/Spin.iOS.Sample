@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A184B41231DAB9000B0033B /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B39231DAB9000B0033B /* RxRelay.framework */; };
+		1A184B42231DAB9000B0033B /* RxRelay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B39231DAB9000B0033B /* RxRelay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1A184B43231DAB9000B0033B /* Spin_Combine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3A231DAB9000B0033B /* Spin_Combine.framework */; };
+		1A184B44231DAB9000B0033B /* Spin_Combine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3A231DAB9000B0033B /* Spin_Combine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1A184B45231DAB9000B0033B /* Spin_RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3B231DAB9000B0033B /* Spin_RxSwift.framework */; };
+		1A184B46231DAB9000B0033B /* Spin_RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3B231DAB9000B0033B /* Spin_RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1A184B47231DAB9000B0033B /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3C231DAB9000B0033B /* RxCocoa.framework */; };
+		1A184B48231DAB9000B0033B /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3C231DAB9000B0033B /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1A184B49231DAB9000B0033B /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3D231DAB9000B0033B /* RxSwift.framework */; };
+		1A184B4A231DAB9000B0033B /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3D231DAB9000B0033B /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1A184B4B231DAB9000B0033B /* Spin_ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3E231DAB9000B0033B /* Spin_ReactiveSwift.framework */; };
+		1A184B4C231DAB9000B0033B /* Spin_ReactiveSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3E231DAB9000B0033B /* Spin_ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1A184B4D231DAB9000B0033B /* Spin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3F231DAB9000B0033B /* Spin.framework */; };
+		1A184B4E231DAB9000B0033B /* Spin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3F231DAB9000B0033B /* Spin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1A184B4F231DAB9000B0033B /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B40231DAB9000B0033B /* ReactiveSwift.framework */; };
+		1A184B50231DAB9000B0033B /* ReactiveSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B40231DAB9000B0033B /* ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1AA14F9F231C90CA00B3854F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA14F9E231C90CA00B3854F /* AppDelegate.swift */; };
 		1AA14FA1231C90CA00B3854F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA14FA0231C90CA00B3854F /* SceneDelegate.swift */; };
 		1AA14FA3231C90CA00B3854F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA14FA2231C90CA00B3854F /* ViewController.swift */; };
@@ -15,7 +31,36 @@
 		1AA14FAB231C90CC00B3854F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AA14FA9231C90CC00B3854F /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		1A184B51231DAB9100B0033B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1A184B50231DAB9000B0033B /* ReactiveSwift.framework in Embed Frameworks */,
+				1A184B48231DAB9000B0033B /* RxCocoa.framework in Embed Frameworks */,
+				1A184B42231DAB9000B0033B /* RxRelay.framework in Embed Frameworks */,
+				1A184B4A231DAB9000B0033B /* RxSwift.framework in Embed Frameworks */,
+				1A184B4E231DAB9000B0033B /* Spin.framework in Embed Frameworks */,
+				1A184B44231DAB9000B0033B /* Spin_Combine.framework in Embed Frameworks */,
+				1A184B4C231DAB9000B0033B /* Spin_ReactiveSwift.framework in Embed Frameworks */,
+				1A184B46231DAB9000B0033B /* Spin_RxSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		1A184B39231DAB9000B0033B /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
+		1A184B3A231DAB9000B0033B /* Spin_Combine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Spin_Combine.framework; path = Carthage/Build/iOS/Spin_Combine.framework; sourceTree = "<group>"; };
+		1A184B3B231DAB9000B0033B /* Spin_RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Spin_RxSwift.framework; path = Carthage/Build/iOS/Spin_RxSwift.framework; sourceTree = "<group>"; };
+		1A184B3C231DAB9000B0033B /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		1A184B3D231DAB9000B0033B /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		1A184B3E231DAB9000B0033B /* Spin_ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Spin_ReactiveSwift.framework; path = Carthage/Build/iOS/Spin_ReactiveSwift.framework; sourceTree = "<group>"; };
+		1A184B3F231DAB9000B0033B /* Spin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Spin.framework; path = Carthage/Build/iOS/Spin.framework; sourceTree = "<group>"; };
+		1A184B40231DAB9000B0033B /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
 		1AA14F9B231C90CA00B3854F /* Spin.iOS.Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spin.iOS.Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AA14F9E231C90CA00B3854F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1AA14FA0231C90CA00B3854F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,17 +76,41 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A184B4F231DAB9000B0033B /* ReactiveSwift.framework in Frameworks */,
+				1A184B49231DAB9000B0033B /* RxSwift.framework in Frameworks */,
+				1A184B47231DAB9000B0033B /* RxCocoa.framework in Frameworks */,
+				1A184B41231DAB9000B0033B /* RxRelay.framework in Frameworks */,
+				1A184B4D231DAB9000B0033B /* Spin.framework in Frameworks */,
+				1A184B43231DAB9000B0033B /* Spin_Combine.framework in Frameworks */,
+				1A184B4B231DAB9000B0033B /* Spin_ReactiveSwift.framework in Frameworks */,
+				1A184B45231DAB9000B0033B /* Spin_RxSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A184B38231DAB9000B0033B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A184B40231DAB9000B0033B /* ReactiveSwift.framework */,
+				1A184B3C231DAB9000B0033B /* RxCocoa.framework */,
+				1A184B39231DAB9000B0033B /* RxRelay.framework */,
+				1A184B3D231DAB9000B0033B /* RxSwift.framework */,
+				1A184B3A231DAB9000B0033B /* Spin_Combine.framework */,
+				1A184B3E231DAB9000B0033B /* Spin_ReactiveSwift.framework */,
+				1A184B3B231DAB9000B0033B /* Spin_RxSwift.framework */,
+				1A184B3F231DAB9000B0033B /* Spin.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1AA14F92231C90CA00B3854F = {
 			isa = PBXGroup;
 			children = (
 				1AA14F9D231C90CA00B3854F /* Spin.iOS.Sample */,
 				1AA14F9C231C90CA00B3854F /* Products */,
+				1A184B38231DAB9000B0033B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,6 +146,7 @@
 				1AA14F97231C90CA00B3854F /* Sources */,
 				1AA14F98231C90CA00B3854F /* Frameworks */,
 				1AA14F99231C90CA00B3854F /* Resources */,
+				1A184B51231DAB9100B0033B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -223,6 +293,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -276,6 +347,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -285,6 +357,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Spin.iOS.Sample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -302,6 +378,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Spin.iOS.Sample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

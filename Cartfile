@@ -1,0 +1,3 @@
+github "Spinners/Spin.RxSwift" "master"
+github "Spinners/Spin.ReactiveSwift" "master"
+github "Spinners/Spin.Combine" "master"

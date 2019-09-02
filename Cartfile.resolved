@@ -1,0 +1,6 @@
+github "ReactiveCocoa/ReactiveSwift" "6.1.0"
+github "ReactiveX/RxSwift" "5.0.1"
+github "Spinners/Spin.Combine" "97de54854059135bbc6dc30330578f867ba87b32"
+github "Spinners/Spin.ReactiveSwift" "47d31f0926bf7f0129a36d59640d026dee596449"
+github "Spinners/Spin.RxSwift" "f088b0fec15faa599b289537f445a27c02e37a0f"
+github "Spinners/Spin.iOS" "0473d399b1e9a782aa19922abddba4072e480670"
