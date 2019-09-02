@@ -1,3 +1,5 @@
 github "Spinners/Spin.RxSwift" "master"
 github "Spinners/Spin.ReactiveSwift" "master"
 github "Spinners/Spin.Combine" "master"
+github "Alamofire/Alamofire" == 4.8.1
+

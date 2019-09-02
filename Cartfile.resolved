@@ -1,3 +1,4 @@
+github "Alamofire/Alamofire" "4.8.1"
 github "ReactiveCocoa/ReactiveSwift" "6.1.0"
 github "ReactiveX/RxSwift" "5.0.1"
 github "Spinners/Spin.Combine" "97de54854059135bbc6dc30330578f867ba87b32"
