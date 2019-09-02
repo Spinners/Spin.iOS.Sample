@@ -29,7 +29,7 @@ public final class AlamofireNetworkService {
     /// - Parameters:
     ///   - sessionManager: the sessionManager that will be used to execute the Route having that Policy
     ///   - policy: the sessionManager's dedicated policy 
-    public func register (sessionManager: SessionManager, forPolicy policy: Policy) {
+    func register (sessionManager: SessionManager, forPolicy policy: Policy) {
         self.sessionManagerPerPolicy[policy.description] = sessionManager
     }
 
@@ -55,7 +55,7 @@ public final class AlamofireNetworkService {
                 .request(route)
                 .validate(statusCode: 200..<300)
                 .responseData(completionHandler: { (responseData) in
-                    logger.verbose(responseData.metrics)
+                    print(responseData.metrics ?? "")
 
                     switch responseData.result {
                     case .success(let data):
@@ -90,7 +90,7 @@ extension AlamofireNetworkService: NetworkService {
     ///
     /// - Parameter route: the Route to fetch
     /// - Returns: the Model parsed from the response
-    public func fetch<EndpointType: Endpoint> (route: Route<EndpointType>) -> Single<EndpointType.ResponseModel> {
+    func fetch<EndpointType: Endpoint> (route: Route<EndpointType>) -> Single<EndpointType.ResponseModel> {
 
         // Pick the suitable SessionManager according to the Route Policy
         let sessionManager = self.sessionManager(fromRoute: route)

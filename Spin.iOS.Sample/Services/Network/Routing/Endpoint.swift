@@ -12,7 +12,7 @@
 /// - get: GET verb
 /// - put: PUT verb
 /// - delete: DELETE verb
-public enum HTTPMethod: String {
+enum HTTPMethod: String {
     case post = "POST"
     case get = "GET"
     case put = "PUT"
@@ -23,7 +23,7 @@ public enum HTTPMethod: String {
 ///
 /// - json: json encoding (usually used for POST/PUT http methods)
 /// - url: query string encoding (usually used for GET/DELETE http methods)
-public enum ParameterEncoding {
+enum ParameterEncoding {
     case json
     case url
 }
@@ -33,7 +33,7 @@ public enum ParameterEncoding {
 /// as query parameters or body parameters
 /// The ResponseModel associated to an Endpoint is a shadow type that will allow
 /// to infer in a type safe way the result of the query to this Endpoint.
-public protocol Endpoint {
+protocol Endpoint {
     associatedtype RequestModel: Encodable
     associatedtype ResponseModel: Decodable
 
@@ -58,7 +58,7 @@ public protocol Endpoint {
 
 // MARK: - Extension to Endpoint defining default values for parameterEncoding and name
 extension Endpoint {
-    public var parameterEncoding: ParameterEncoding {
+    var parameterEncoding: ParameterEncoding {
         switch self.httpMethod {
         case .post, .put:
             return ParameterEncoding.json
@@ -67,11 +67,11 @@ extension Endpoint {
         }
     }
 
-    public static var name: String {
+    static var name: String {
         return "\(self)"
     }
 }
 
 /// In case there is no need to have a RequestModel or a ResponseModel associated
 /// with an Endpoint, we can use this "void" model
-public struct NoModel: Codable {}
+struct NoModel: Codable {}

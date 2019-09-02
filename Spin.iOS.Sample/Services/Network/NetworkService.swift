@@ -16,14 +16,14 @@ import RxSwift
 /// - forbidden: although the authentication succeeded, the request is not allowed to access the resource.
 /// - responseNotDecodable: the received response could not be parsed into the expected Model
 /// - failure: all the other kinds of possible network errors
-public enum NetworkError: LocalizedError {
+enum NetworkError: LocalizedError {
     case unauthorized
     case badRequest
     case forbidden
     case responseDecodingFailure(error: Error)
     case failure(error: Error)
 
-    public var errorDescription: String? {
+    var errorDescription: String? {
         switch self {
         case .unauthorized: return "unauthorized"
         case .badRequest: return "badRequest"
@@ -36,6 +36,6 @@ public enum NetworkError: LocalizedError {
     }
 }
 
-public protocol NetworkService {
+protocol NetworkService {
     func fetch<EndpointType: Endpoint> (route: Route<EndpointType>) -> Single<EndpointType.ResponseModel>
 }

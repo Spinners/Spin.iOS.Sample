@@ -7,4 +7,4 @@
 //
 
 /// A Path is the relative URL of an Endpoint
-public protocol Path: CustomStringConvertible {}
+protocol Path: CustomStringConvertible {}

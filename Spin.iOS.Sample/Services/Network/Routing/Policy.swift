@@ -7,4 +7,4 @@
 //
 
 /// A Policy defines the access restriction attached to an Endpoint
-public protocol Policy: CustomStringConvertible {}
+protocol Policy: CustomStringConvertible {}

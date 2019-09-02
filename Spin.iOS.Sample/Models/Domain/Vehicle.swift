@@ -1,12 +1,12 @@
 //
-//  Vehicules.swift
+//  Vehicles.swift
 //  Spin.iOS.Sample
 //
 //  Created by Thibault Wittemberg on 2019-09-02.
 //  Copyright © 2019 Spinners. All rights reserved.
 //
 
-struct Vehicule: Decodable {
+struct Vehicle: Decodable {
     let name: String
     let model: String
     let vehicleClass: String
