@@ -6,13 +6,17 @@
 //  Copyright © 2019 Spinners. All rights reserved.
 //
 
+import RxFlow
 import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var window: UIWindow?
 
-
+    private let coordinator = FlowCoordinator()
+    private let appFlow = AppFlow()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true

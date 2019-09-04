@@ -14,7 +14,7 @@ struct Film: Decodable {
     let openingCrawl: String
     let director: String
     let producer: String
-    let releaseDate: Date
+    let releaseDate: String
     let species: [String]
     let starships: [String]
     let vehicles: [String]

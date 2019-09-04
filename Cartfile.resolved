@@ -1,6 +1,8 @@
 github "Alamofire/Alamofire" "4.8.1"
+github "AliSoftware/Reusable" "4.1.0"
 github "ReactiveCocoa/ReactiveSwift" "6.1.0"
 github "ReactiveX/RxSwift" "5.0.1"
+github "RxSwiftCommunity/RxFlow" "5ba220b208abd1b6a70e741cffaea51ccbff7f4a"
 github "Spinners/Spin.Combine" "97de54854059135bbc6dc30330578f867ba87b32"
 github "Spinners/Spin.ReactiveSwift" "47d31f0926bf7f0129a36d59640d026dee596449"
 github "Spinners/Spin.RxSwift" "f088b0fec15faa599b289537f445a27c02e37a0f"

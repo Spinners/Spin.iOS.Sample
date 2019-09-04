@@ -8,7 +8,7 @@
 
 struct ListResponse<Entity: Decodable>: Decodable {
     let count: Int
-    let previous: String
-    let next: String
+    let previous: String?
+    let next: String?
     let results: [Entity]
 }

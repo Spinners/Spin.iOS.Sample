@@ -2,4 +2,5 @@ github "Spinners/Spin.RxSwift" "master"
 github "Spinners/Spin.ReactiveSwift" "master"
 github "Spinners/Spin.Combine" "master"
 github "Alamofire/Alamofire" == 4.8.1
-
+github "RxSwiftCommunity/RxFlow" "develop"
+github "AliSoftware/Reusable" == 4.1.0

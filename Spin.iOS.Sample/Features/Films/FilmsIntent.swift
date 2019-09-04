@@ -7,6 +7,6 @@
 //
 
 enum FilmsIntent {
-    case loadAll
+    case all
     case search(for: String)
 }

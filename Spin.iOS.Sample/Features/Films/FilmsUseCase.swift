@@ -8,23 +8,35 @@
 
 import RxSwift
 
-enum FilmsUseCase {
-}
-
-extension FilmsUseCase {
-    static func all(allFunction: () -> Single<[Film]>) -> Observable<FilmsAction> {
-        return allFunction()
-            .asObservable()
-            .map { .succeedLoad(films: $0) }
-            .catchErrorJustReturn(.failLoad)
-            .startWith(.startLoad)
-    }
-    
-    static func search(searchFunction: (String) -> Single<[Film]>, query: String) -> Observable<FilmsAction> {
-        return searchFunction(query)
-            .asObservable()
-            .map { .succeedLoad(films: $0) }
-            .catchErrorJustReturn(.failLoad)
-            .startWith(.startLoad)
+extension Films {
+    enum UseCase {
+        
+        static func allIntentToFilmsAction(allFunction: @escaping () -> Single<[Film]>, intents: Observable<FilmsIntent>) -> Observable<FilmsAction> {
+            return intents.flatMap { (intent) -> Observable<FilmsAction> in
+                if case .all = intent {
+                    return allFunction()
+                    .asObservable()
+                    .map { .succeedLoad(films: $0) }
+                    .catchErrorJustReturn(.failLoad)
+                    .startWith(.startLoad)
+                }
+                
+                return .never()
+            }
+        }
+        
+        static func searchIntentToFilmsAction(searchFunction: @escaping (String) -> Single<[Film]>, intents: Observable<FilmsIntent>) -> Observable<FilmsAction> {
+            return intents.flatMap { (intent) -> Observable<FilmsAction> in
+                if case let .search(query) = intent {
+                    return searchFunction(query)
+                    .asObservable()
+                    .map { .succeedLoad(films: $0) }
+                    .catchErrorJustReturn(.failLoad)
+                    .startWith(.startLoad)
+                }
+                
+                return .never()
+            }
+        }
     }
 }
