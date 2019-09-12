@@ -6,8 +6,10 @@
 //  Copyright © 2019 Spinners. All rights reserved.
 //
 
-enum FilmsAction {
-    case startLoad
-    case succeedLoad(films: [Film])
-    case failLoad
+extension Films {
+    enum Action {
+        case startLoad
+        case succeedLoad(films: [Film])
+        case failLoad
+    }
 }

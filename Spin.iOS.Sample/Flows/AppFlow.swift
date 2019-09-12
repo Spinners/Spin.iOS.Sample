@@ -37,15 +37,18 @@ class AppFlow: Flow {
 
 extension AppFlow {
     func navigateToFilms() -> FlowContributors {
-        let viewController = FilmsViewController.instantiate()
         
         // build Spin
         let allFilmsBusinessFunction = curry2Extended(function: Films.Business.all)(baseUrl)(AlamofireNetworkService())
-        let allIntentToFilmsAction = curry2(function: Films.UseCase.allIntentToFilmsAction)(allFilmsBusinessFunction)
+        let searchFilmsBusinessFunction = curry3(function: Films.Business.search)(baseUrl)(AlamofireNetworkService())
+        
+        let allFilmsAction = curry1Extended(function: Films.UseCase.allFilmsAction)(allFilmsBusinessFunction)
+        let searchFilmsAction = curry2(function: Films.UseCase.searchFilmsAction)(searchFilmsBusinessFunction)
+             
+        let viewController = FilmsViewController.make(allActionBuilder: allFilmsAction, searchActionBuilder: searchFilmsAction)
         
         Spin
-            .from(function: viewController.emitIntents)
-            .compose(function: allIntentToFilmsAction)
+            .from(function: viewController.emitActions)
             .scan(initial: .idle, reducer: Films.reducer)
             .consume(by: viewController.interpret, on: MainScheduler.instance)
             .spin()
@@ -54,5 +57,14 @@ extension AppFlow {
         self.rootViewController.pushViewController(viewController, animated: true)
         
         return .one(flowContributor: .contribute(withNext: viewController))
+    }
+}
+
+extension Observable {
+    static func merge<A>(functions: (Observable<A>) -> Observable<Element>...) -> (Observable<A>) -> Observable<Element> {
+        return { (a: Observable<A>) -> Observable<Element> in
+            let results: [Observable<Element>] = functions.map { $0(a) }
+            return Observable<Element>.merge(results)
+        }
     }
 }

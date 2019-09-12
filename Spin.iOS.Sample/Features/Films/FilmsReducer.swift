@@ -7,7 +7,7 @@
 //
 
 extension Films {
-    static func reducer(state: FilmsState, action: FilmsAction) -> FilmsState {
+    static func reducer(state: Films.State, action: Films.Action) -> Films.State {
         switch action {
         case .startLoad:
             return .loading

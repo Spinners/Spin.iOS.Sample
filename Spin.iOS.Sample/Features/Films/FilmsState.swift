@@ -6,9 +6,15 @@
 //  Copyright © 2019 Spinners. All rights reserved.
 //
 
-enum FilmsState {
-    case idle
-    case loading
-    case loaded([Film])
-    case failed
+extension Films {
+    enum State {
+        case idle
+        case loading
+        case loaded([Film])
+        case failed
+        
+        struct ViewItem {
+            let title: String
+        }
+    }
 }
