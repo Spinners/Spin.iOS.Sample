@@ -55,8 +55,6 @@ public final class AlamofireNetworkService {
                 .request(route)
                 .validate(statusCode: 200..<300)
                 .responseData(completionHandler: { (responseData) in
-                    print(responseData.metrics ?? "")
-
                     switch responseData.result {
                     case .success(let data):
                         do {

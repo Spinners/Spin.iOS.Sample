@@ -12,22 +12,21 @@ import RxRelay
 import RxSwift
 import UIKit
 
-class FilmsViewController: UIViewController, StoryboardBased, Stepper {
+class PeoplesViewController: UIViewController, StoryboardBased, Stepper {
     
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
-    
-    @IBOutlet private weak var previousButton: UIButton!
+    @IBOutlet private weak var previouxButton: UIButton!
     @IBOutlet private weak var nextButton: UIButton!
     
     let steps = PublishRelay<Step>()
     let disposeBag = DisposeBag()
     
-    private var datasource = [Film]()
+    private var datasource = [People]()
     
-    var commandBuilder: Films.Commands.Builder!
-    let commandsRelay = PublishRelay<AnyCommand<Films.State, Films.Action>>()
-    
+    var commandBuilder: Peoples.Commands.Builder!
+    let commandsRelay = PublishRelay<AnyCommand<Peoples.State, Peoples.Action>>()
+        
     @IBAction func previousTapped(_ sender: UIButton) {
         self.commandsRelay.accept(self.commandBuilder.buildPreviousCommand())
     }
@@ -47,52 +46,52 @@ class FilmsViewController: UIViewController, StoryboardBased, Stepper {
     }
 }
 
-extension FilmsViewController {
-    func emitCommands() -> Observable<AnyCommand<Films.State, Films.Action>> {
+extension PeoplesViewController {
+    func emitCommands() -> Observable<AnyCommand<Peoples.State, Peoples.Action>> {
         return self.commandsRelay.asObservable()
     }
 }
 
-extension FilmsViewController {
-    func interpret(state: Films.State) -> Void {
+extension PeoplesViewController {
+    func interpret(state: Peoples.State) -> Void {
         switch state {
         case .idle:
             self.activityIndicator.stopAnimating()
-            self.previousButton.isEnabled = false
+            self.previouxButton.isEnabled = false
             self.nextButton.isEnabled = false
         case .loading:
             self.activityIndicator.startAnimating()
             self.tableView.alpha = 0.5
-        case .loaded(let films, let previous, let next):
+        case .loaded(let peoples, let previous, let next):
             self.activityIndicator.stopAnimating()
             self.tableView.alpha = 1
-            self.datasource = films
+            self.datasource = peoples
             self.tableView.reloadData()
-            self.previousButton.isEnabled = (previous != nil)
+            self.previouxButton.isEnabled = (previous != nil)
             self.nextButton.isEnabled = (next != nil)
         case .failed:
             self.activityIndicator.stopAnimating()
-            self.previousButton.isEnabled = false
+            self.previouxButton.isEnabled = false
             self.nextButton.isEnabled = false
         }
     }
 }
 
-extension FilmsViewController: UITableViewDataSource {
+extension PeoplesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.datasource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "filmCell", for: indexPath)
-        cell.textLabel?.text = self.datasource[indexPath.row].title
+        let cell = tableView.dequeueReusableCell(withIdentifier: "peopleCell", for: indexPath)
+        cell.textLabel?.text = self.datasource[indexPath.row].name
         return cell
     }
 }
 
-extension FilmsViewController {
-    static func make(commandBuilder: Films.Commands.Builder) -> FilmsViewController {
-        let viewController = FilmsViewController.instantiate()
+extension PeoplesViewController {
+    static func make(commandBuilder: Peoples.Commands.Builder) -> PeoplesViewController {
+        let viewController = PeoplesViewController.instantiate()
         viewController.commandBuilder = commandBuilder
         return viewController
     }

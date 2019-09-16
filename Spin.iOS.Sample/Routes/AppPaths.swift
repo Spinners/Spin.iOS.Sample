@@ -6,6 +6,10 @@
 //  Copyright © 2018 Genetec. All rights reserved.
 //
 
+public enum VersatilePath {
+    case path(path: String)
+}
+
 public enum PeoplePath {
     case peoples
     case people(id: String)
@@ -43,6 +47,15 @@ public enum PlanetsPath {
 }
 
 // MARK: - String representation of paths
+extension VersatilePath: Path {
+    public var description: String {
+        switch self {
+        case .path(let path):
+            return path
+        }
+    }
+}
+
 extension PeoplePath: Path {
     public var description: String {
         switch self {

@@ -2,25 +2,24 @@
 //  AppFlow.swift
 //  Spin.iOS.Sample
 //
-//  Created by Thibault Wittemberg on 2019-09-02.
+//  Created by Thibault Wittemberg on 2019-09-14.
 //  Copyright © 2019 Spinners. All rights reserved.
 //
 
 import RxFlow
 import RxSwift
+import RxRelay
 import Spin
 import Spin_RxSwift
 import UIKit
 
 class AppFlow: Flow {
     
-    private lazy var rootViewController: UINavigationController = {
-        let viewController = UINavigationController()
+    private lazy var rootViewController: UITabBarController = {
+        let viewController = UITabBarController()
         return viewController
     }()
-    
-    private let baseUrl = "swapi.co"
-    
+        
     var root: Presentable {
         return self.rootViewController
     }
@@ -29,42 +28,34 @@ class AppFlow: Flow {
         guard let step = step as? AppSteps else { return .none }
         
         switch step {
-        case .films:
-            return self.navigateToFilms()
+        case .home:
+            return self.navigateToHome()
+        default:
+            return .none
         }
     }
 }
 
 extension AppFlow {
-    func navigateToFilms() -> FlowContributors {
+    func navigateToHome() -> FlowContributors {
         
-        // build Spin
-        let allFilmsBusinessFunction = curry2Extended(function: Films.Business.all)(baseUrl)(AlamofireNetworkService())
-        let searchFilmsBusinessFunction = curry3(function: Films.Business.search)(baseUrl)(AlamofireNetworkService())
-        
-        let allFilmsAction = curry1Extended(function: Films.UseCase.allFilmsAction)(allFilmsBusinessFunction)
-        let searchFilmsAction = curry2(function: Films.UseCase.searchFilmsAction)(searchFilmsBusinessFunction)
-             
-        let viewController = FilmsViewController.make(allActionBuilder: allFilmsAction, searchActionBuilder: searchFilmsAction)
-        
-        Spin
-            .from(function: viewController.emitActions)
-            .scan(initial: .idle, reducer: Films.reducer)
-            .consume(by: viewController.interpret, on: MainScheduler.instance)
-            .spin()
-            .disposed(by: viewController.disposeBag)
-        
-        self.rootViewController.pushViewController(viewController, animated: true)
-        
-        return .one(flowContributor: .contribute(withNext: viewController))
-    }
-}
+        let filmsFlow = FilmsFlow()
+        let peoplesFlow = PeoplesFlow()
 
-extension Observable {
-    static func merge<A>(functions: (Observable<A>) -> Observable<Element>...) -> (Observable<A>) -> Observable<Element> {
-        return { (a: Observable<A>) -> Observable<Element> in
-            let results: [Observable<Element>] = functions.map { $0(a) }
-            return Observable<Element>.merge(results)
+        Flows.whenReady(flow1: filmsFlow, flow2: peoplesFlow) { [weak self] (filmsRoot, peoplesRoot) in
+            let tabBarItem1 = UITabBarItem(title: "Films", image: UIImage(systemName: "film"), selectedImage: nil)
+            filmsRoot.tabBarItem = tabBarItem1
+            filmsRoot.title = "Films"
+            
+            let tabBarItem2 = UITabBarItem(title: "Peoples", image: UIImage(systemName: "person"), selectedImage: nil)
+            peoplesRoot.tabBarItem = tabBarItem2
+            peoplesRoot.title = "Peoples"
+            
+            self?.rootViewController.setViewControllers([filmsRoot, peoplesRoot], animated: false)
         }
+        
+        return .multiple(flowContributors: [
+            .contribute(withNextPresentable: filmsFlow, withNextStepper: OneStepper(withSingleStep: AppSteps.films)),
+            .contribute(withNextPresentable: peoplesFlow, withNextStepper: OneStepper(withSingleStep: AppSteps.peoples))])
     }
 }

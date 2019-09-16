@@ -42,6 +42,18 @@ func curry3<A, B, C, D>(function: @escaping (A, B, C) -> D) -> (A) -> (B) -> (C)
     }
 }
 
+func curry3Extended<A, B, C, D>(function: @escaping (A, B, C) -> D) -> (A) -> (B) -> (C) -> () -> D {
+    return { a in
+        return { b in
+            return { c in
+                return { () in
+                    return function(a, b, c)
+                }
+            }
+        }
+    }
+}
+
 func curry4<A, B, C, D, E>(function: @escaping (A, B, C, D) -> E) -> (A) -> (B) -> (C) -> (D) -> E {
     return { a in
         return { b in

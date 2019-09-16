@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Films View Controller-->
+        <!--Peoples View Controller-->
         <scene sceneID="Hqk-nQ-Dxa">
             <objects>
-                <viewController id="63b-9r-HEI" customClass="FilmsViewController" customModule="Spin_iOS_Sample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="63b-9r-HEI" customClass="PeoplesViewController" customModule="Spin_iOS_Sample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kT3-dQ-hGJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,10 +19,10 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="BcB-Xf-0gK">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="702"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="710"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="filmCell" textLabel="6UL-lZ-kcg" style="IBUITableViewCellStyleDefault" id="cqB-gb-t2n">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="peopleCell" textLabel="6UL-lZ-kcg" style="IBUITableViewCellStyleDefault" id="cqB-gb-t2n">
                                                 <rect key="frame" x="0.0" y="55.5" width="414" height="43.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cqB-gb-t2n" id="Ogp-dV-nct">
@@ -45,47 +45,47 @@
                                         <rect key="frame" x="188.5" y="390.5" width="37" height="37"/>
                                         <color key="color" cocoaTouchSystemColor="darkTextColor"/>
                                     </activityIndicatorView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="yZL-j3-EIK">
-                                        <rect key="frame" x="20" y="710" width="374" height="100"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="bph-bn-ja5">
+                                        <rect key="frame" x="8" y="718" width="398" height="100"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ah-tI-fct">
-                                                <rect key="frame" x="0.0" y="0.0" width="187" height="100"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P7Q-4m-oz8">
+                                                <rect key="frame" x="0.0" y="0.0" width="199" height="100"/>
                                                 <state key="normal" title="Previous"/>
                                                 <connections>
-                                                    <action selector="previousTapped:" destination="63b-9r-HEI" eventType="touchUpInside" id="nN8-NQ-rQx"/>
+                                                    <action selector="previousTapped:" destination="63b-9r-HEI" eventType="touchUpInside" id="6bn-L3-o19"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vj1-G9-2Ku">
-                                                <rect key="frame" x="187" y="0.0" width="187" height="100"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MRC-li-qvR">
+                                                <rect key="frame" x="199" y="0.0" width="199" height="100"/>
                                                 <state key="normal" title="Next"/>
                                                 <connections>
-                                                    <action selector="nextTapped:" destination="63b-9r-HEI" eventType="touchUpInside" id="Z0A-M2-O7q"/>
+                                                    <action selector="nextTapped:" destination="63b-9r-HEI" eventType="touchUpInside" id="5Op-Y7-gwj"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="47h-bc-gEf"/>
+                                            <constraint firstAttribute="height" constant="100" id="YL8-9i-xCJ"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
+                                    <constraint firstItem="bph-bn-ja5" firstAttribute="top" secondItem="BcB-Xf-0gK" secondAttribute="bottom" constant="8" id="6pQ-3R-AvP"/>
                                     <constraint firstItem="Rgy-Gx-5ae" firstAttribute="centerX" secondItem="Lzr-3E-Mtj" secondAttribute="centerX" id="O2m-cz-g46"/>
-                                    <constraint firstAttribute="trailing" secondItem="yZL-j3-EIK" secondAttribute="trailing" constant="20" symbolic="YES" id="PLr-vn-CN8"/>
+                                    <constraint firstAttribute="trailing" secondItem="bph-bn-ja5" secondAttribute="trailing" constant="8" id="QGC-yV-5p6"/>
                                     <constraint firstItem="BcB-Xf-0gK" firstAttribute="top" secondItem="Lzr-3E-Mtj" secondAttribute="top" id="TPm-Sd-aSN"/>
-                                    <constraint firstItem="yZL-j3-EIK" firstAttribute="leading" secondItem="Lzr-3E-Mtj" secondAttribute="leading" constant="20" symbolic="YES" id="cgG-T5-5JF"/>
                                     <constraint firstItem="BcB-Xf-0gK" firstAttribute="leading" secondItem="Lzr-3E-Mtj" secondAttribute="leading" id="jYL-xv-OQu"/>
                                     <constraint firstItem="Rgy-Gx-5ae" firstAttribute="centerY" secondItem="Lzr-3E-Mtj" secondAttribute="centerY" id="nTo-YJ-tqw"/>
-                                    <constraint firstItem="yZL-j3-EIK" firstAttribute="top" secondItem="BcB-Xf-0gK" secondAttribute="bottom" constant="8" symbolic="YES" id="qoU-ju-Yge"/>
                                     <constraint firstAttribute="trailing" secondItem="BcB-Xf-0gK" secondAttribute="trailing" id="rSV-pd-tJu"/>
+                                    <constraint firstItem="bph-bn-ja5" firstAttribute="leading" secondItem="Lzr-3E-Mtj" secondAttribute="leading" constant="8" id="waX-ip-UBL"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Lzr-3E-Mtj" firstAttribute="top" secondItem="ABH-hE-s0m" secondAttribute="top" id="3RF-3S-1S0"/>
+                            <constraint firstItem="ABH-hE-s0m" firstAttribute="bottom" secondItem="bph-bn-ja5" secondAttribute="bottom" id="JUp-Ud-0pA"/>
                             <constraint firstItem="ABH-hE-s0m" firstAttribute="bottom" secondItem="Lzr-3E-Mtj" secondAttribute="bottom" id="Tod-wL-CR5"/>
-                            <constraint firstItem="ABH-hE-s0m" firstAttribute="bottom" secondItem="yZL-j3-EIK" secondAttribute="bottom" constant="8" id="ZWu-HU-ff0"/>
                             <constraint firstItem="ABH-hE-s0m" firstAttribute="trailing" secondItem="Lzr-3E-Mtj" secondAttribute="trailing" id="nxJ-iC-fPW"/>
                             <constraint firstItem="Lzr-3E-Mtj" firstAttribute="leading" secondItem="ABH-hE-s0m" secondAttribute="leading" id="oHt-3e-pRg"/>
                         </constraints>
@@ -93,8 +93,8 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="Rgy-Gx-5ae" id="JiO-wE-uMS"/>
-                        <outlet property="nextButton" destination="vj1-G9-2Ku" id="UeY-On-dea"/>
-                        <outlet property="previousButton" destination="1Ah-tI-fct" id="lvY-Yb-iW4"/>
+                        <outlet property="nextButton" destination="MRC-li-qvR" id="qGt-eb-F4a"/>
+                        <outlet property="previouxButton" destination="P7Q-4m-oz8" id="PSJ-dD-NkQ"/>
                         <outlet property="tableView" destination="BcB-Xf-0gK" id="HB4-Yq-LFk"/>
                     </connections>
                 </viewController>

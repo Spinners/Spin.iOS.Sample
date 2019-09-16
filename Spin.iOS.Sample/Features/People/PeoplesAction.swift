@@ -6,10 +6,10 @@
 //  Copyright © 2019 Spinners. All rights reserved.
 //
 
-extension Films {
+extension Peoples {
     enum Action {
         case startLoad
-        case succeedLoad(films: [Film], previousPage: Int?, nextPage: Int?)
+        case succeedLoad(peoples: [People], previousPage: Int?, nextPage: Int?)
         case failLoad
     }
 }

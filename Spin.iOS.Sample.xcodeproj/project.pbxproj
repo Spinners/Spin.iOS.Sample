@@ -45,6 +45,18 @@
 		1A184B83231DCBD200B0033B /* ListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A184B82231DCBD200B0033B /* ListResponse.swift */; };
 		1A184B86231DD27E00B0033B /* Peoples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A184B85231DD27E00B0033B /* Peoples.swift */; };
 		1A2AEC3F23287B1000164B74 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2AEC3E23287B1000164B74 /* Command.swift */; };
+		1A39B9E2232DC8A600A65C51 /* ListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A39B9E1232DC8A600A65C51 /* ListRequest.swift */; };
+		1A5E222E232D8AE9002C34D0 /* Observable+merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E222D232D8AE9002C34D0 /* Observable+merge.swift */; };
+		1A5E2230232D921C002C34D0 /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E222F232D921C002C34D0 /* AppFlow.swift */; };
+		1A5E2232232D9938002C34D0 /* PeoplesFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E2231232D9938002C34D0 /* PeoplesFlow.swift */; };
+		1A5E223B232D99EE002C34D0 /* PeoplesCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E2234232D99EE002C34D0 /* PeoplesCommand.swift */; };
+		1A5E223C232D99EE002C34D0 /* PeoplesReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E2235232D99EE002C34D0 /* PeoplesReducer.swift */; };
+		1A5E223E232D99EE002C34D0 /* PeoplesAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E2237232D99EE002C34D0 /* PeoplesAction.swift */; };
+		1A5E2240232D99EE002C34D0 /* PeoplesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E2239232D99EE002C34D0 /* PeoplesState.swift */; };
+		1A5E2241232D99EE002C34D0 /* PeoplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E223A232D99EE002C34D0 /* PeoplesViewController.swift */; };
+		1A5E2243232D9A96002C34D0 /* PeoplesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A5E2242232D9A96002C34D0 /* PeoplesViewController.storyboard */; };
+		1A73E247232D6FF6005CDDAD /* FilmsCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A73E246232D6FF6005CDDAD /* FilmsCommand.swift */; };
+		1A73E249232D8414005CDDAD /* String+URLComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A73E248232D8414005CDDAD /* String+URLComponents.swift */; };
 		1AA14F9F231C90CA00B3854F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA14F9E231C90CA00B3854F /* AppDelegate.swift */; };
 		1AA14FA1231C90CA00B3854F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA14FA0231C90CA00B3854F /* SceneDelegate.swift */; };
 		1AA14FA8231C90CB00B3854F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AA14FA7231C90CB00B3854F /* Assets.xcassets */; };
@@ -56,8 +68,7 @@
 		1AEF2CE2231DD8EA0061A132 /* Species.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CE1231DD8EA0061A132 /* Species.swift */; };
 		1AEF2CE8231DDB690061A132 /* FilmsAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CE7231DDB690061A132 /* FilmsAction.swift */; };
 		1AEF2CEA231DDBA90061A132 /* FilmsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CE9231DDBA90061A132 /* FilmsState.swift */; };
-		1AEF2CEC231DDBF00061A132 /* FilmsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CEB231DDBF00061A132 /* FilmsUseCase.swift */; };
-		1AEF2CEF231DDDA40061A132 /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CEE231DDDA40061A132 /* AppFlow.swift */; };
+		1AEF2CEF231DDDA40061A132 /* FilmsFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CEE231DDDA40061A132 /* FilmsFlow.swift */; };
 		1AEF2CF1231DE0060061A132 /* RxFlow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AEF2CF0231DE0060061A132 /* RxFlow.framework */; };
 		1AEF2CF2231DE0060061A132 /* RxFlow.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1AEF2CF0231DE0060061A132 /* RxFlow.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1AEF2CF4231DE12C0061A132 /* AppSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CF3231DE12C0061A132 /* AppSteps.swift */; };
@@ -123,6 +134,18 @@
 		1A184B82231DCBD200B0033B /* ListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListResponse.swift; sourceTree = "<group>"; };
 		1A184B85231DD27E00B0033B /* Peoples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peoples.swift; sourceTree = "<group>"; };
 		1A2AEC3E23287B1000164B74 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		1A39B9E1232DC8A600A65C51 /* ListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRequest.swift; sourceTree = "<group>"; };
+		1A5E222D232D8AE9002C34D0 /* Observable+merge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+merge.swift"; sourceTree = "<group>"; };
+		1A5E222F232D921C002C34D0 /* AppFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlow.swift; sourceTree = "<group>"; };
+		1A5E2231232D9938002C34D0 /* PeoplesFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeoplesFlow.swift; sourceTree = "<group>"; };
+		1A5E2234232D99EE002C34D0 /* PeoplesCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeoplesCommand.swift; sourceTree = "<group>"; };
+		1A5E2235232D99EE002C34D0 /* PeoplesReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeoplesReducer.swift; sourceTree = "<group>"; };
+		1A5E2237232D99EE002C34D0 /* PeoplesAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeoplesAction.swift; sourceTree = "<group>"; };
+		1A5E2239232D99EE002C34D0 /* PeoplesState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeoplesState.swift; sourceTree = "<group>"; };
+		1A5E223A232D99EE002C34D0 /* PeoplesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeoplesViewController.swift; sourceTree = "<group>"; };
+		1A5E2242232D9A96002C34D0 /* PeoplesViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PeoplesViewController.storyboard; sourceTree = "<group>"; };
+		1A73E246232D6FF6005CDDAD /* FilmsCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsCommand.swift; sourceTree = "<group>"; };
+		1A73E248232D8414005CDDAD /* String+URLComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+URLComponents.swift"; sourceTree = "<group>"; };
 		1AA14F9B231C90CA00B3854F /* Spin.iOS.Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spin.iOS.Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AA14F9E231C90CA00B3854F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1AA14FA0231C90CA00B3854F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,8 +159,7 @@
 		1AEF2CE1231DD8EA0061A132 /* Species.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Species.swift; sourceTree = "<group>"; };
 		1AEF2CE7231DDB690061A132 /* FilmsAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsAction.swift; sourceTree = "<group>"; };
 		1AEF2CE9231DDBA90061A132 /* FilmsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsState.swift; sourceTree = "<group>"; };
-		1AEF2CEB231DDBF00061A132 /* FilmsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsUseCase.swift; sourceTree = "<group>"; };
-		1AEF2CEE231DDDA40061A132 /* AppFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlow.swift; sourceTree = "<group>"; };
+		1AEF2CEE231DDDA40061A132 /* FilmsFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsFlow.swift; sourceTree = "<group>"; };
 		1AEF2CF0231DE0060061A132 /* RxFlow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxFlow.framework; path = Carthage/Build/iOS/RxFlow.framework; sourceTree = "<group>"; };
 		1AEF2CF3231DE12C0061A132 /* AppSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSteps.swift; sourceTree = "<group>"; };
 		1AEF2CF5231DE3500061A132 /* FilmsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsViewController.swift; sourceTree = "<group>"; };
@@ -261,6 +283,7 @@
 		1A184B81231DC8A600B0033B /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				1A39B9E1232DC8A600A65C51 /* ListRequest.swift */,
 				1A184B82231DCBD200B0033B /* ListResponse.swift */,
 			);
 			path = Request;
@@ -277,6 +300,19 @@
 				1AEF2CDD231DD8680061A132 /* Vehicles.swift */,
 			);
 			path = Business;
+			sourceTree = "<group>";
+		};
+		1A5E2233232D9989002C34D0 /* People */ = {
+			isa = PBXGroup;
+			children = (
+				1A5E2242232D9A96002C34D0 /* PeoplesViewController.storyboard */,
+				1A5E223A232D99EE002C34D0 /* PeoplesViewController.swift */,
+				1A5E2234232D99EE002C34D0 /* PeoplesCommand.swift */,
+				1A5E2237232D99EE002C34D0 /* PeoplesAction.swift */,
+				1A5E2239232D99EE002C34D0 /* PeoplesState.swift */,
+				1A5E2235232D99EE002C34D0 /* PeoplesReducer.swift */,
+			);
+			path = People;
 			sourceTree = "<group>";
 		};
 		1AA14F92231C90CA00B3854F = {
@@ -320,6 +356,7 @@
 			isa = PBXGroup;
 			children = (
 				1AEF2CE4231DDA0A0061A132 /* Films */,
+				1A5E2233232D9989002C34D0 /* People */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -329,7 +366,7 @@
 			children = (
 				1AEF2CF7231DE35F0061A132 /* FilmsViewController.storyboard */,
 				1AEF2CF5231DE3500061A132 /* FilmsViewController.swift */,
-				1AEF2CEB231DDBF00061A132 /* FilmsUseCase.swift */,
+				1A73E246232D6FF6005CDDAD /* FilmsCommand.swift */,
 				1AEF2CE7231DDB690061A132 /* FilmsAction.swift */,
 				1AEF2CE9231DDBA90061A132 /* FilmsState.swift */,
 				1AEF2CFF231DEF5A0061A132 /* FilmsReducer.swift */,
@@ -340,8 +377,10 @@
 		1AEF2CED231DDD8D0061A132 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
-				1AEF2CEE231DDDA40061A132 /* AppFlow.swift */,
+				1AEF2CEE231DDDA40061A132 /* FilmsFlow.swift */,
 				1AEF2CF3231DE12C0061A132 /* AppSteps.swift */,
+				1A5E222F232D921C002C34D0 /* AppFlow.swift */,
+				1A5E2231232D9938002C34D0 /* PeoplesFlow.swift */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -350,6 +389,8 @@
 			isa = PBXGroup;
 			children = (
 				1AEF2CFD231DE64D0061A132 /* Curry.swift */,
+				1A73E248232D8414005CDDAD /* String+URLComponents.swift */,
+				1A5E222D232D8AE9002C34D0 /* Observable+merge.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -413,6 +454,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A5E2243232D9A96002C34D0 /* PeoplesViewController.storyboard in Resources */,
 				1AA14FAB231C90CC00B3854F /* LaunchScreen.storyboard in Resources */,
 				1AEF2CF8231DE35F0061A132 /* FilmsViewController.storyboard in Resources */,
 				1AA14FA8231C90CB00B3854F /* Assets.xcassets in Resources */,
@@ -426,9 +468,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A5E2232232D9938002C34D0 /* PeoplesFlow.swift in Sources */,
 				1A184B71231DC10900B0033B /* AlamofireNetworkService.swift in Sources */,
 				1AEF2D00231DEF5A0061A132 /* FilmsReducer.swift in Sources */,
-				1AEF2CEF231DDDA40061A132 /* AppFlow.swift in Sources */,
+				1AEF2CEF231DDDA40061A132 /* FilmsFlow.swift in Sources */,
+				1A5E223E232D99EE002C34D0 /* PeoplesAction.swift in Sources */,
 				1AEF2CE0231DD8B00061A132 /* Planets.swift in Sources */,
 				1AEF2CF6231DE3500061A132 /* FilmsViewController.swift in Sources */,
 				1A184B6B231DBED800B0033B /* Endpoint.swift in Sources */,
@@ -439,19 +483,27 @@
 				1A184B56231DB75000B0033B /* Film.swift in Sources */,
 				1A184B54231DADDC00B0033B /* People.swift in Sources */,
 				1AEF2CDA231DD78A0061A132 /* Films.swift in Sources */,
+				1A5E2230232D921C002C34D0 /* AppFlow.swift in Sources */,
 				1A184B7D231DC3AE00B0033B /* AppPaths.swift in Sources */,
+				1A73E249232D8414005CDDAD /* String+URLComponents.swift in Sources */,
 				1A184B6A231DBED800B0033B /* Route.swift in Sources */,
 				1A184B83231DCBD200B0033B /* ListResponse.swift in Sources */,
 				1AEF2CDC231DD7E10061A132 /* Starships.swift in Sources */,
 				1A184B5E231DBBBE00B0033B /* Planet.swift in Sources */,
-				1AEF2CEC231DDBF00061A132 /* FilmsUseCase.swift in Sources */,
+				1A5E223C232D99EE002C34D0 /* PeoplesReducer.swift in Sources */,
+				1A39B9E2232DC8A600A65C51 /* ListRequest.swift in Sources */,
+				1A5E223B232D99EE002C34D0 /* PeoplesCommand.swift in Sources */,
+				1A73E247232D6FF6005CDDAD /* FilmsCommand.swift in Sources */,
 				1A184B58231DB85700B0033B /* Starship.swift in Sources */,
+				1A5E2241232D99EE002C34D0 /* PeoplesViewController.swift in Sources */,
 				1AEF2CE2231DD8EA0061A132 /* Species.swift in Sources */,
 				1AEF2CF4231DE12C0061A132 /* AppSteps.swift in Sources */,
 				1A2AEC3F23287B1000164B74 /* Command.swift in Sources */,
+				1A5E222E232D8AE9002C34D0 /* Observable+merge.swift in Sources */,
 				1A184B68231DBED800B0033B /* Policy.swift in Sources */,
 				1AA14F9F231C90CA00B3854F /* AppDelegate.swift in Sources */,
 				1A184B7F231DC3AE00B0033B /* AppEndpoints.swift in Sources */,
+				1A5E2240232D99EE002C34D0 /* PeoplesState.swift in Sources */,
 				1AEF2CEA231DDBA90061A132 /* FilmsState.swift in Sources */,
 				1A184B78231DC2B700B0033B /* Encodable+Dictionary.swift in Sources */,
 				1A184B5A231DB9B200B0033B /* Vehicle.swift in Sources */,

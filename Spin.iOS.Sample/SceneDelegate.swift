@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.rootViewController = root
         }
         
-        self.coordinator.coordinate(flow: appFlow, with: OneStepper(withSingleStep: AppSteps.films))
+        self.coordinator.coordinate(flow: appFlow, with: OneStepper(withSingleStep: AppSteps.home))
     }
 }
 

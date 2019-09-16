@@ -6,11 +6,11 @@
 //  Copyright © 2019 Spinners. All rights reserved.
 //
 
-extension Films {
+extension Peoples {
     enum State {
         case idle
         case loading
-        case loaded(data: [Film], previousPage: Int?, nextPage: Int?)
+        case loaded(data: [People], previousPage: Int?, nextPage: Int?)
         case failed
         
         struct ViewItem {

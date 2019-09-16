@@ -9,5 +9,7 @@
 import RxFlow
 
 enum AppSteps: Step {
+    case home
     case films
+    case peoples
 }

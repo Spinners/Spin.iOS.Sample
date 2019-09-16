@@ -6,13 +6,13 @@
 //  Copyright © 2019 Spinners. All rights reserved.
 //
 
-extension Films {
-    static func reducer(state: Films.State, action: Films.Action) -> Films.State {
+extension Peoples {
+    static func reducer(state: Peoples.State, action: Peoples.Action) -> Peoples.State {
         switch action {
         case .startLoad:
             return .loading
-        case .succeedLoad(let films, let previousPage, let nextPage):
-            return .loaded(data: films, previousPage: previousPage, nextPage: nextPage)
+        case .succeedLoad(let peoples, let previousPage, let nextPage):
+            return .loaded(data: peoples, previousPage: previousPage, nextPage: nextPage)
         case .failLoad:
             return .failed
         }

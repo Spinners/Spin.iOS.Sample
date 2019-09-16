@@ -9,26 +9,27 @@
 import RxSwift
 
 protocol Command {
+    associatedtype State
     associatedtype Mutation
-    func execute() -> Observable<Mutation>
+    func execute(basedOn state: State) -> Observable<Mutation>
 }
 
-class AnyCommand<AnyMutation>: Command {
+class AnyCommand<AnyState, AnyMutation>: Command {
     
-    private let executeClosure: () -> Observable<Mutation>
+    private let executeClosure: (State) -> Observable<Mutation>
     
-    init<CommandType: Command> (command: CommandType) where CommandType.Mutation == Mutation {
+    init<CommandType: Command> (command: CommandType) where CommandType.State == State, CommandType.Mutation == Mutation {
         self.executeClosure = command.execute
     }
     
-    func execute() -> Observable<AnyMutation> {
-        return self.executeClosure()
+    func execute(basedOn state: AnyState) -> Observable<AnyMutation> {
+        return self.executeClosure(state)
     }
 
 }
 
 extension Command {
-    func eraseToAnyCommand() -> AnyCommand<Mutation> {
-        return AnyCommand<Mutation>(command: self)
+    func eraseToAnyCommand() -> AnyCommand<State, Mutation> {
+        return AnyCommand<State, Mutation>(command: self)
     }
 }

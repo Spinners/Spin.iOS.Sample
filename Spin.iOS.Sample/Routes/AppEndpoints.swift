@@ -7,7 +7,7 @@
 //
 
 struct ListEndpoint<Entity: Decodable>: Endpoint {
-    typealias RequestModel = NoModel
+    typealias RequestModel = ListRequest
     typealias ResponseModel = ListResponse<Entity>
 
     let prefixPath = "/api"
