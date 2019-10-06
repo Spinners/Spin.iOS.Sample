@@ -1,5 +1,5 @@
 //
-//  FilmsViewController.swift
+//  StarshipsViewController.swift
 //  Spin.iOS.Sample
 //
 //  Created by Thibault Wittemberg on 2019-09-02.
@@ -13,7 +13,7 @@ import RxSwift
 import Spin
 import UIKit
 
-class PeoplesViewController: UIViewController, StoryboardBased, Stepper {
+class StarshipsViewController: UIViewController, StoryboardBased, Stepper {
     
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
@@ -23,10 +23,10 @@ class PeoplesViewController: UIViewController, StoryboardBased, Stepper {
     let steps = PublishRelay<Step>()
     let disposeBag = DisposeBag()
     
-    private var datasource = [People]()
+    private var datasource = [Starship]()
     
-    var commandBuilder: Peoples.Commands.Builder!
-    let commandsRelay = PublishRelay<AnyCommand<Observable<Peoples.Action>, Peoples.State>>()
+    var commandBuilder: Starships.Commands.Builder!
+    let commandsRelay = PublishRelay<AnyCommand<Observable<Starships.Action>, Starships.State>>()
         
     @IBAction func previousTapped(_ sender: UIButton) {
         self.commandsRelay.accept(self.commandBuilder.buildPreviousCommand())
@@ -47,14 +47,14 @@ class PeoplesViewController: UIViewController, StoryboardBased, Stepper {
     }
 }
 
-extension PeoplesViewController {
-    func emitCommands() -> Observable<AnyCommand<Observable<Peoples.Action>, Peoples.State>> {
+extension StarshipsViewController {
+    func emitCommands() -> Observable<AnyCommand<Observable<Starships.Action>, Starships.State>> {
         return self.commandsRelay.asObservable()
     }
 }
 
-extension PeoplesViewController {
-    func interpret(state: Peoples.State) -> Void {
+extension StarshipsViewController {
+    func interpret(state: Starships.State) -> Void {
 
         guard
             self.activityIndicator != nil,
@@ -70,10 +70,10 @@ extension PeoplesViewController {
         case .loading:
             self.activityIndicator.startAnimating()
             self.tableView.alpha = 0.5
-        case .loaded(let peoples, let previous, let next):
+        case .loaded(let starships, let previous, let next):
             self.activityIndicator.stopAnimating()
             self.tableView.alpha = 1
-            self.datasource = peoples
+            self.datasource = starships
             self.tableView.reloadData()
             self.previouxButton.isEnabled = (previous != nil)
             self.nextButton.isEnabled = (next != nil)
@@ -85,21 +85,21 @@ extension PeoplesViewController {
     }
 }
 
-extension PeoplesViewController: UITableViewDataSource {
+extension StarshipsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.datasource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "peopleCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "starshipCell", for: indexPath)
         cell.textLabel?.text = self.datasource[indexPath.row].name
         return cell
     }
 }
 
-extension PeoplesViewController {
-    static func make(commandBuilder: Peoples.Commands.Builder) -> PeoplesViewController {
-        let viewController = PeoplesViewController.instantiate()
+extension StarshipsViewController {
+    static func make(commandBuilder: Starships.Commands.Builder) -> StarshipsViewController {
+        let viewController = StarshipsViewController.instantiate()
         viewController.commandBuilder = commandBuilder
         return viewController
     }

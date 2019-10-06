@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import Spin
 
 extension Peoples {
     enum Commands {
@@ -15,22 +16,22 @@ extension Peoples {
             
             private let baseUrl = "swapi.co"
 
-            func buildAllCommand() -> AnyCommand<Peoples.State, Peoples.Action> {
+            func buildAllCommand() -> AnyCommand<Observable<Peoples.Action>, Peoples.State> {
                 let allPeoplesBusinessFunction = curry2Extended(function: Peoples.Business.all)(baseUrl)(AlamofireNetworkService())
                 return Peoples.Commands.All(allPeoplesBusiness: allPeoplesBusinessFunction).eraseToAnyCommand()
             }
             
-            func buildPreviousCommand() -> AnyCommand<Peoples.State, Peoples.Action> {
+            func buildPreviousCommand() -> AnyCommand<Observable<Peoples.Action>, Peoples.State> {
                 let pagePeoplesBusinessFunction = curry3(function: Peoples.Business.page)(baseUrl)(AlamofireNetworkService())
                 return Peoples.Commands.Previous(pagePeoplesBusiness: pagePeoplesBusinessFunction).eraseToAnyCommand()
             }
             
-            func buildNextCommand() -> AnyCommand<Peoples.State, Peoples.Action> {
+            func buildNextCommand() -> AnyCommand<Observable<Peoples.Action>, Peoples.State> {
                 let pagePeoplesBusinessFunction = curry3(function: Peoples.Business.page)(baseUrl)(AlamofireNetworkService())
                 return Peoples.Commands.Next(pagePeoplesBusiness: pagePeoplesBusinessFunction).eraseToAnyCommand()
             }
             
-            func buildSearchCommand(query: String) -> AnyCommand<Peoples.State, Peoples.Action> {
+            func buildSearchCommand(query: String) -> AnyCommand<Observable<Peoples.Action>, Peoples.State> {
                 let searchPeoplesBusinessFunction = curry3(function: Peoples.Business.search)(baseUrl)(AlamofireNetworkService())
                 return Peoples.Commands.Search(searchPeoplesBusiness: searchPeoplesBusinessFunction, query: query).eraseToAnyCommand()
             }

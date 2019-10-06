@@ -7,6 +7,7 @@
 //
 
 import RxSwift
+import Spin
 
 extension Films {
     enum Commands {
@@ -15,22 +16,22 @@ extension Films {
             
             private let baseUrl = "swapi.co"
 
-            func buildAllCommand() -> AnyCommand<Films.State, Films.Action> {
+            func buildAllCommand() -> AnyCommand<Observable<Films.Action>, Films.State> {
                 let allFilmsBusinessFunction = curry2Extended(function: Films.Business.all)(baseUrl)(AlamofireNetworkService())
                 return Films.Commands.All(allFilmsBusiness: allFilmsBusinessFunction).eraseToAnyCommand()
             }
             
-            func buildPreviousCommand() -> AnyCommand<Films.State, Films.Action> {
+            func buildPreviousCommand() -> AnyCommand<Observable<Films.Action>, Films.State> {
                 let pageFilmsBusinessFunction = curry3(function: Films.Business.page)(baseUrl)(AlamofireNetworkService())
                 return Films.Commands.Previous(pageFilmsBusiness: pageFilmsBusinessFunction).eraseToAnyCommand()
             }
             
-            func buildNextCommand() -> AnyCommand<Films.State, Films.Action> {
+            func buildNextCommand() -> AnyCommand<Observable<Films.Action>, Films.State> {
                 let pageFilmsBusinessFunction = curry3(function: Films.Business.page)(baseUrl)(AlamofireNetworkService())
                 return Films.Commands.Next(pageFilmsBusiness: pageFilmsBusinessFunction).eraseToAnyCommand()
             }
             
-            func buildSearchCommand(query: String) -> AnyCommand<Films.State, Films.Action> {
+            func buildSearchCommand(query: String) -> AnyCommand<Observable<Films.Action>, Films.State> {
                 let searchFilmsBusinessFunction = curry3(function: Films.Business.search)(baseUrl)(AlamofireNetworkService())
                 return Films.Commands.Search(searchFilmsBusiness: searchFilmsBusinessFunction, query: query).eraseToAnyCommand()
             }

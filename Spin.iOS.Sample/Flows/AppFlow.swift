@@ -39,23 +39,29 @@ class AppFlow: Flow {
 extension AppFlow {
     func navigateToHome() -> FlowContributors {
         
-        let filmsFlow = FilmsFlow()
+        let planetsFlow = PlanetsFlow()
         let peoplesFlow = PeoplesFlow()
+        let starshipsFlow = StarshipsFlow()
 
-        Flows.whenReady(flow1: filmsFlow, flow2: peoplesFlow) { [weak self] (filmsRoot, peoplesRoot) in
-            let tabBarItem1 = UITabBarItem(title: "Films", image: UIImage(systemName: "film"), selectedImage: nil)
-            filmsRoot.tabBarItem = tabBarItem1
-            filmsRoot.title = "Films"
+        Flows.whenReady(flow1: planetsFlow, flow2: peoplesFlow, flow3: starshipsFlow) { [weak self] (planetsRoot, peoplesRoot, starshipsRoot) in
+            let tabBarItem1 = UITabBarItem(title: "Planets", image: UIImage(systemName: "mappin.and.ellipse"), selectedImage: nil)
+            planetsRoot.tabBarItem = tabBarItem1
+            planetsRoot.title = "Planets"
             
             let tabBarItem2 = UITabBarItem(title: "Peoples", image: UIImage(systemName: "person"), selectedImage: nil)
             peoplesRoot.tabBarItem = tabBarItem2
             peoplesRoot.title = "Peoples"
+
+            let tabBarItem3 = UITabBarItem(title: "Starships", image: UIImage(systemName: "airplane"), selectedImage: nil)
+            starshipsRoot.tabBarItem = tabBarItem3
+            starshipsRoot.title = "Starships"
             
-            self?.rootViewController.setViewControllers([filmsRoot, peoplesRoot], animated: false)
+            self?.rootViewController.setViewControllers([planetsRoot, peoplesRoot, starshipsRoot], animated: false)
         }
         
         return .multiple(flowContributors: [
-            .contribute(withNextPresentable: filmsFlow, withNextStepper: OneStepper(withSingleStep: AppSteps.films)),
-            .contribute(withNextPresentable: peoplesFlow, withNextStepper: OneStepper(withSingleStep: AppSteps.peoples))])
+            .contribute(withNextPresentable: planetsFlow, withNextStepper: OneStepper(withSingleStep: AppSteps.planets)),
+            .contribute(withNextPresentable: peoplesFlow, withNextStepper: OneStepper(withSingleStep: AppSteps.peoples)),
+            .contribute(withNextPresentable: starshipsFlow, withNextStepper: OneStepper(withSingleStep: AppSteps.starships))])
     }
 }

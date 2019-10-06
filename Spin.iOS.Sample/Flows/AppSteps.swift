@@ -10,6 +10,8 @@ import RxFlow
 
 enum AppSteps: Step {
     case home
-    case films
+    case planets
     case peoples
+    case starships
+    case films
 }

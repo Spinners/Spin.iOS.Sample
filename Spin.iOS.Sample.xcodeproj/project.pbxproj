@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		1A184B41231DAB9000B0033B /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B39231DAB9000B0033B /* RxRelay.framework */; };
 		1A184B42231DAB9000B0033B /* RxRelay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B39231DAB9000B0033B /* RxRelay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1A184B43231DAB9000B0033B /* Spin_Combine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3A231DAB9000B0033B /* Spin_Combine.framework */; };
-		1A184B44231DAB9000B0033B /* Spin_Combine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3A231DAB9000B0033B /* Spin_Combine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1A184B45231DAB9000B0033B /* Spin_RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3B231DAB9000B0033B /* Spin_RxSwift.framework */; };
 		1A184B46231DAB9000B0033B /* Spin_RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3B231DAB9000B0033B /* Spin_RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1A184B47231DAB9000B0033B /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3C231DAB9000B0033B /* RxCocoa.framework */; };
@@ -44,7 +42,6 @@
 		1A184B7F231DC3AE00B0033B /* AppEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A184B7C231DC3AE00B0033B /* AppEndpoints.swift */; };
 		1A184B83231DCBD200B0033B /* ListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A184B82231DCBD200B0033B /* ListResponse.swift */; };
 		1A184B86231DD27E00B0033B /* Peoples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A184B85231DD27E00B0033B /* Peoples.swift */; };
-		1A2AEC3F23287B1000164B74 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2AEC3E23287B1000164B74 /* Command.swift */; };
 		1A39B9E2232DC8A600A65C51 /* ListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A39B9E1232DC8A600A65C51 /* ListRequest.swift */; };
 		1A5E222E232D8AE9002C34D0 /* Observable+merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E222D232D8AE9002C34D0 /* Observable+merge.swift */; };
 		1A5E2230232D921C002C34D0 /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E222F232D921C002C34D0 /* AppFlow.swift */; };
@@ -68,7 +65,7 @@
 		1AEF2CE2231DD8EA0061A132 /* Species.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CE1231DD8EA0061A132 /* Species.swift */; };
 		1AEF2CE8231DDB690061A132 /* FilmsAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CE7231DDB690061A132 /* FilmsAction.swift */; };
 		1AEF2CEA231DDBA90061A132 /* FilmsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CE9231DDBA90061A132 /* FilmsState.swift */; };
-		1AEF2CEF231DDDA40061A132 /* FilmsFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CEE231DDDA40061A132 /* FilmsFlow.swift */; };
+		1AEF2CEF231DDDA40061A132 /* PlanetsFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CEE231DDDA40061A132 /* PlanetsFlow.swift */; };
 		1AEF2CF1231DE0060061A132 /* RxFlow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AEF2CF0231DE0060061A132 /* RxFlow.framework */; };
 		1AEF2CF2231DE0060061A132 /* RxFlow.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1AEF2CF0231DE0060061A132 /* RxFlow.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1AEF2CF4231DE12C0061A132 /* AppSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CF3231DE12C0061A132 /* AppSteps.swift */; };
@@ -78,6 +75,19 @@
 		1AEF2CFB231DE39A0061A132 /* Reusable.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1AEF2CF9231DE39A0061A132 /* Reusable.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1AEF2CFE231DE64D0061A132 /* Curry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CFD231DE64D0061A132 /* Curry.swift */; };
 		1AEF2D00231DEF5A0061A132 /* FilmsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF2CFF231DEF5A0061A132 /* FilmsReducer.swift */; };
+		747C3210234A9505001FC6B3 /* PlanetsCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C320A234A9505001FC6B3 /* PlanetsCommand.swift */; };
+		747C3211234A9505001FC6B3 /* PlanetsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C320B234A9505001FC6B3 /* PlanetsReducer.swift */; };
+		747C3212234A9505001FC6B3 /* PlanetsAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C320C234A9505001FC6B3 /* PlanetsAction.swift */; };
+		747C3213234A9505001FC6B3 /* PlanetsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C320D234A9505001FC6B3 /* PlanetsState.swift */; };
+		747C3214234A9505001FC6B3 /* PlanetsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 747C320E234A9505001FC6B3 /* PlanetsViewController.storyboard */; };
+		747C3215234A9505001FC6B3 /* PlanetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C320F234A9505001FC6B3 /* PlanetsViewController.swift */; };
+		747C3218234A9BB4001FC6B3 /* StarshipsFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C3217234A9BB4001FC6B3 /* StarshipsFlow.swift */; };
+		747C321F234A9BEE001FC6B3 /* StarshipsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 747C3219234A9BEE001FC6B3 /* StarshipsViewController.storyboard */; };
+		747C3220234A9BEE001FC6B3 /* StarshipsCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C321A234A9BEE001FC6B3 /* StarshipsCommand.swift */; };
+		747C3221234A9BEE001FC6B3 /* StarshipsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C321B234A9BEE001FC6B3 /* StarshipsState.swift */; };
+		747C3222234A9BEE001FC6B3 /* StarshipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C321C234A9BEE001FC6B3 /* StarshipsViewController.swift */; };
+		747C3223234A9BEE001FC6B3 /* StarshipsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C321D234A9BEE001FC6B3 /* StarshipsReducer.swift */; };
+		747C3224234A9BEE001FC6B3 /* StarshipsAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C321E234A9BEE001FC6B3 /* StarshipsAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -95,7 +105,6 @@
 				1A184B42231DAB9000B0033B /* RxRelay.framework in Embed Frameworks */,
 				1A184B4A231DAB9000B0033B /* RxSwift.framework in Embed Frameworks */,
 				1A184B4E231DAB9000B0033B /* Spin.framework in Embed Frameworks */,
-				1A184B44231DAB9000B0033B /* Spin_Combine.framework in Embed Frameworks */,
 				1A184B4C231DAB9000B0033B /* Spin_ReactiveSwift.framework in Embed Frameworks */,
 				1A184B46231DAB9000B0033B /* Spin_RxSwift.framework in Embed Frameworks */,
 			);
@@ -133,7 +142,6 @@
 		1A184B7C231DC3AE00B0033B /* AppEndpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppEndpoints.swift; sourceTree = "<group>"; };
 		1A184B82231DCBD200B0033B /* ListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListResponse.swift; sourceTree = "<group>"; };
 		1A184B85231DD27E00B0033B /* Peoples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Peoples.swift; sourceTree = "<group>"; };
-		1A2AEC3E23287B1000164B74 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		1A39B9E1232DC8A600A65C51 /* ListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRequest.swift; sourceTree = "<group>"; };
 		1A5E222D232D8AE9002C34D0 /* Observable+merge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+merge.swift"; sourceTree = "<group>"; };
 		1A5E222F232D921C002C34D0 /* AppFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlow.swift; sourceTree = "<group>"; };
@@ -159,7 +167,7 @@
 		1AEF2CE1231DD8EA0061A132 /* Species.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Species.swift; sourceTree = "<group>"; };
 		1AEF2CE7231DDB690061A132 /* FilmsAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsAction.swift; sourceTree = "<group>"; };
 		1AEF2CE9231DDBA90061A132 /* FilmsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsState.swift; sourceTree = "<group>"; };
-		1AEF2CEE231DDDA40061A132 /* FilmsFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsFlow.swift; sourceTree = "<group>"; };
+		1AEF2CEE231DDDA40061A132 /* PlanetsFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsFlow.swift; sourceTree = "<group>"; };
 		1AEF2CF0231DE0060061A132 /* RxFlow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxFlow.framework; path = Carthage/Build/iOS/RxFlow.framework; sourceTree = "<group>"; };
 		1AEF2CF3231DE12C0061A132 /* AppSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSteps.swift; sourceTree = "<group>"; };
 		1AEF2CF5231DE3500061A132 /* FilmsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +175,19 @@
 		1AEF2CF9231DE39A0061A132 /* Reusable.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reusable.framework; path = Carthage/Build/iOS/Reusable.framework; sourceTree = "<group>"; };
 		1AEF2CFD231DE64D0061A132 /* Curry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Curry.swift; sourceTree = "<group>"; };
 		1AEF2CFF231DEF5A0061A132 /* FilmsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsReducer.swift; sourceTree = "<group>"; };
+		747C320A234A9505001FC6B3 /* PlanetsCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanetsCommand.swift; sourceTree = "<group>"; };
+		747C320B234A9505001FC6B3 /* PlanetsReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanetsReducer.swift; sourceTree = "<group>"; };
+		747C320C234A9505001FC6B3 /* PlanetsAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanetsAction.swift; sourceTree = "<group>"; };
+		747C320D234A9505001FC6B3 /* PlanetsState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanetsState.swift; sourceTree = "<group>"; };
+		747C320E234A9505001FC6B3 /* PlanetsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PlanetsViewController.storyboard; sourceTree = "<group>"; };
+		747C320F234A9505001FC6B3 /* PlanetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanetsViewController.swift; sourceTree = "<group>"; };
+		747C3217234A9BB4001FC6B3 /* StarshipsFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarshipsFlow.swift; sourceTree = "<group>"; };
+		747C3219234A9BEE001FC6B3 /* StarshipsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StarshipsViewController.storyboard; sourceTree = "<group>"; };
+		747C321A234A9BEE001FC6B3 /* StarshipsCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarshipsCommand.swift; sourceTree = "<group>"; };
+		747C321B234A9BEE001FC6B3 /* StarshipsState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarshipsState.swift; sourceTree = "<group>"; };
+		747C321C234A9BEE001FC6B3 /* StarshipsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarshipsViewController.swift; sourceTree = "<group>"; };
+		747C321D234A9BEE001FC6B3 /* StarshipsReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarshipsReducer.swift; sourceTree = "<group>"; };
+		747C321E234A9BEE001FC6B3 /* StarshipsAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarshipsAction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,7 +203,6 @@
 				1A184B49231DAB9000B0033B /* RxSwift.framework in Frameworks */,
 				1A184B41231DAB9000B0033B /* RxRelay.framework in Frameworks */,
 				1A184B4D231DAB9000B0033B /* Spin.framework in Frameworks */,
-				1A184B43231DAB9000B0033B /* Spin_Combine.framework in Frameworks */,
 				1A184B4B231DAB9000B0033B /* Spin_ReactiveSwift.framework in Frameworks */,
 				1A184B45231DAB9000B0033B /* Spin_RxSwift.framework in Frameworks */,
 			);
@@ -347,7 +367,6 @@
 				1AA14FA7231C90CB00B3854F /* Assets.xcassets */,
 				1AA14FA9231C90CC00B3854F /* LaunchScreen.storyboard */,
 				1AA14FAC231C90CC00B3854F /* Info.plist */,
-				1A2AEC3E23287B1000164B74 /* Command.swift */,
 			);
 			path = Spin.iOS.Sample;
 			sourceTree = "<group>";
@@ -355,8 +374,10 @@
 		1AEF2CE3231DD9ED0061A132 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				1AEF2CE4231DDA0A0061A132 /* Films */,
+				747C3209234A9428001FC6B3 /* Planets */,
 				1A5E2233232D9989002C34D0 /* People */,
+				747C3216234A9AD4001FC6B3 /* Starships */,
+				1AEF2CE4231DDA0A0061A132 /* Films */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -377,10 +398,11 @@
 		1AEF2CED231DDD8D0061A132 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
-				1AEF2CEE231DDDA40061A132 /* FilmsFlow.swift */,
-				1AEF2CF3231DE12C0061A132 /* AppSteps.swift */,
 				1A5E222F232D921C002C34D0 /* AppFlow.swift */,
+				1AEF2CEE231DDDA40061A132 /* PlanetsFlow.swift */,
 				1A5E2231232D9938002C34D0 /* PeoplesFlow.swift */,
+				747C3217234A9BB4001FC6B3 /* StarshipsFlow.swift */,
+				1AEF2CF3231DE12C0061A132 /* AppSteps.swift */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -393,6 +415,32 @@
 				1A5E222D232D8AE9002C34D0 /* Observable+merge.swift */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		747C3209234A9428001FC6B3 /* Planets */ = {
+			isa = PBXGroup;
+			children = (
+				747C320E234A9505001FC6B3 /* PlanetsViewController.storyboard */,
+				747C320F234A9505001FC6B3 /* PlanetsViewController.swift */,
+				747C320A234A9505001FC6B3 /* PlanetsCommand.swift */,
+				747C320C234A9505001FC6B3 /* PlanetsAction.swift */,
+				747C320D234A9505001FC6B3 /* PlanetsState.swift */,
+				747C320B234A9505001FC6B3 /* PlanetsReducer.swift */,
+			);
+			path = Planets;
+			sourceTree = "<group>";
+		};
+		747C3216234A9AD4001FC6B3 /* Starships */ = {
+			isa = PBXGroup;
+			children = (
+				747C3219234A9BEE001FC6B3 /* StarshipsViewController.storyboard */,
+				747C321C234A9BEE001FC6B3 /* StarshipsViewController.swift */,
+				747C321A234A9BEE001FC6B3 /* StarshipsCommand.swift */,
+				747C321E234A9BEE001FC6B3 /* StarshipsAction.swift */,
+				747C321B234A9BEE001FC6B3 /* StarshipsState.swift */,
+				747C321D234A9BEE001FC6B3 /* StarshipsReducer.swift */,
+			);
+			path = Starships;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -454,8 +502,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				747C3214234A9505001FC6B3 /* PlanetsViewController.storyboard in Resources */,
 				1A5E2243232D9A96002C34D0 /* PeoplesViewController.storyboard in Resources */,
 				1AA14FAB231C90CC00B3854F /* LaunchScreen.storyboard in Resources */,
+				747C321F234A9BEE001FC6B3 /* StarshipsViewController.storyboard in Resources */,
 				1AEF2CF8231DE35F0061A132 /* FilmsViewController.storyboard in Resources */,
 				1AA14FA8231C90CB00B3854F /* Assets.xcassets in Resources */,
 			);
@@ -471,13 +521,15 @@
 				1A5E2232232D9938002C34D0 /* PeoplesFlow.swift in Sources */,
 				1A184B71231DC10900B0033B /* AlamofireNetworkService.swift in Sources */,
 				1AEF2D00231DEF5A0061A132 /* FilmsReducer.swift in Sources */,
-				1AEF2CEF231DDDA40061A132 /* FilmsFlow.swift in Sources */,
+				1AEF2CEF231DDDA40061A132 /* PlanetsFlow.swift in Sources */,
 				1A5E223E232D99EE002C34D0 /* PeoplesAction.swift in Sources */,
+				747C3221234A9BEE001FC6B3 /* StarshipsState.swift in Sources */,
 				1AEF2CE0231DD8B00061A132 /* Planets.swift in Sources */,
 				1AEF2CF6231DE3500061A132 /* FilmsViewController.swift in Sources */,
 				1A184B6B231DBED800B0033B /* Endpoint.swift in Sources */,
 				1A184B62231DBE9400B0033B /* NetworkService.swift in Sources */,
 				1A184B7E231DC3AE00B0033B /* AppPolicies.swift in Sources */,
+				747C3215234A9505001FC6B3 /* PlanetsViewController.swift in Sources */,
 				1A184B5C231DBAE900B0033B /* Specie.swift in Sources */,
 				1AEF2CFE231DE64D0061A132 /* Curry.swift in Sources */,
 				1A184B56231DB75000B0033B /* Film.swift in Sources */,
@@ -489,30 +541,38 @@
 				1A184B6A231DBED800B0033B /* Route.swift in Sources */,
 				1A184B83231DCBD200B0033B /* ListResponse.swift in Sources */,
 				1AEF2CDC231DD7E10061A132 /* Starships.swift in Sources */,
+				747C3212234A9505001FC6B3 /* PlanetsAction.swift in Sources */,
+				747C3222234A9BEE001FC6B3 /* StarshipsViewController.swift in Sources */,
 				1A184B5E231DBBBE00B0033B /* Planet.swift in Sources */,
 				1A5E223C232D99EE002C34D0 /* PeoplesReducer.swift in Sources */,
 				1A39B9E2232DC8A600A65C51 /* ListRequest.swift in Sources */,
+				747C3223234A9BEE001FC6B3 /* StarshipsReducer.swift in Sources */,
 				1A5E223B232D99EE002C34D0 /* PeoplesCommand.swift in Sources */,
 				1A73E247232D6FF6005CDDAD /* FilmsCommand.swift in Sources */,
 				1A184B58231DB85700B0033B /* Starship.swift in Sources */,
 				1A5E2241232D99EE002C34D0 /* PeoplesViewController.swift in Sources */,
 				1AEF2CE2231DD8EA0061A132 /* Species.swift in Sources */,
 				1AEF2CF4231DE12C0061A132 /* AppSteps.swift in Sources */,
-				1A2AEC3F23287B1000164B74 /* Command.swift in Sources */,
 				1A5E222E232D8AE9002C34D0 /* Observable+merge.swift in Sources */,
 				1A184B68231DBED800B0033B /* Policy.swift in Sources */,
 				1AA14F9F231C90CA00B3854F /* AppDelegate.swift in Sources */,
 				1A184B7F231DC3AE00B0033B /* AppEndpoints.swift in Sources */,
 				1A5E2240232D99EE002C34D0 /* PeoplesState.swift in Sources */,
+				747C3211234A9505001FC6B3 /* PlanetsReducer.swift in Sources */,
 				1AEF2CEA231DDBA90061A132 /* FilmsState.swift in Sources */,
+				747C3218234A9BB4001FC6B3 /* StarshipsFlow.swift in Sources */,
+				747C3213234A9505001FC6B3 /* PlanetsState.swift in Sources */,
 				1A184B78231DC2B700B0033B /* Encodable+Dictionary.swift in Sources */,
 				1A184B5A231DB9B200B0033B /* Vehicle.swift in Sources */,
 				1A184B86231DD27E00B0033B /* Peoples.swift in Sources */,
+				747C3220234A9BEE001FC6B3 /* StarshipsCommand.swift in Sources */,
+				747C3210234A9505001FC6B3 /* PlanetsCommand.swift in Sources */,
 				1A184B76231DC2A200B0033B /* Route+URLRequestConvertible.swift in Sources */,
 				1A184B69231DBED800B0033B /* Path.swift in Sources */,
 				1AEF2CDE231DD8680061A132 /* Vehicles.swift in Sources */,
 				1AEF2CE8231DDB690061A132 /* FilmsAction.swift in Sources */,
 				1AA14FA1231C90CA00B3854F /* SceneDelegate.swift in Sources */,
+				747C3224234A9BEE001FC6B3 /* StarshipsAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

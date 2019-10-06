@@ -10,6 +10,7 @@ import Reusable
 import RxFlow
 import RxRelay
 import RxSwift
+import Spin
 import UIKit
 
 class FilmsViewController: UIViewController, StoryboardBased, Stepper {
@@ -26,7 +27,7 @@ class FilmsViewController: UIViewController, StoryboardBased, Stepper {
     private var datasource = [Film]()
     
     var commandBuilder: Films.Commands.Builder!
-    let commandsRelay = PublishRelay<AnyCommand<Films.State, Films.Action>>()
+    let commandsRelay = PublishRelay<AnyCommand<Observable<Films.Action>, Films.State>>()
     
     @IBAction func previousTapped(_ sender: UIButton) {
         self.commandsRelay.accept(self.commandBuilder.buildPreviousCommand())
@@ -48,13 +49,20 @@ class FilmsViewController: UIViewController, StoryboardBased, Stepper {
 }
 
 extension FilmsViewController {
-    func emitCommands() -> Observable<AnyCommand<Films.State, Films.Action>> {
+    func emitCommands() -> Observable<AnyCommand<Observable<Films.Action>,Films.State>> {
         return self.commandsRelay.asObservable()
     }
 }
 
 extension FilmsViewController {
     func interpret(state: Films.State) -> Void {
+
+        guard
+            self.activityIndicator != nil,
+            self.previousButton != nil,
+            self.nextButton != nil,
+            self.tableView != nil else { return }
+
         switch state {
         case .idle:
             self.activityIndicator.stopAnimating()

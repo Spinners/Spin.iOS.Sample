@@ -22,7 +22,7 @@ public enum FilmsPath {
     case filmSearch(query: String)
 }
 
-public enum StartshipsPath {
+public enum StarshipsPath {
     case starships
     case starship(id: String)
     case starshipSearch(query: String)
@@ -83,7 +83,7 @@ extension FilmsPath: Path {
     }
 }
 
-extension StartshipsPath: Path {
+extension StarshipsPath: Path {
     public var description: String {
         switch self {
             

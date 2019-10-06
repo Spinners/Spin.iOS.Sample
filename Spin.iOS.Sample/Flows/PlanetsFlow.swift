@@ -1,5 +1,5 @@
 //
-//  FilmsFlow.swift
+//  PlanetsFlow.swift
 //  Spin.iOS.Sample
 //
 //  Created by Thibault Wittemberg on 2019-09-02.
@@ -13,7 +13,7 @@ import Spin
 import Spin_RxSwift
 import UIKit
 
-class FilmsFlow: Flow {
+class PlanetsFlow: Flow {
     
     private lazy var rootViewController: UINavigationController = {
         let viewController = UINavigationController()
@@ -28,33 +28,24 @@ class FilmsFlow: Flow {
         guard let step = step as? AppSteps else { return .none }
         
         switch step {
-        case .films:
-            return self.navigateToFilms()
+        case .planets:
+            return self.navigateToPlanets()
         default:
             return .none
         }
     }
 }
 
-extension FilmsFlow {
-    func navigateToFilms() -> FlowContributors {
+extension PlanetsFlow {
+    func navigateToPlanets() -> FlowContributors {
         
         // build Spin
-        let viewController = FilmsViewController.make(commandBuilder: Films.Commands.Builder())
-        
-        let currentState = BehaviorRelay<Films.State>(value: .idle)
-        
-        Spin
+        let viewController = PlanetsViewController.make(commandBuilder: Planets.Commands.Builder())
+                
+        Spinner
             .from(function: viewController.emitCommands)
-            .compose(function: { (commands) -> Observable<Films.Action> in
-                return commands.withLatestFrom(currentState) { return ($0, $1) }
-                    .flatMap { (command, state) -> Observable<Films.Action> in
-                        return command.execute(basedOn: state)
-                }
-            })
-            .scan(initial: .idle, reducer: Films.reducer)
+            .feedback(initial: .idle, reducer: Planets.reducer)
             .consume(by: viewController.interpret, on: MainScheduler.instance)
-            .consume(by: { currentState.accept($0) }, on: MainScheduler.instance)
             .spin()
             .disposed(by: viewController.disposeBag)
         
