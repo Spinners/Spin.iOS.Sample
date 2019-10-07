@@ -44,7 +44,7 @@ extension PeoplesFlow {
 
         Spinner
             .from(function: viewController.emitCommands)
-            .feedback(initial: .idle, reducer: Peoples.reducer)
+            .executeAndScan(initial: .idle, reducer: Peoples.reducer)
             .consume(by: viewController.interpret, on: MainScheduler.instance)
             .spin()
             .disposed(by: viewController.disposeBag)

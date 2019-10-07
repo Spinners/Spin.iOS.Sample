@@ -43,7 +43,7 @@ extension PlanetsFlow {
                 
         Spinner
             .from(function: viewController.emitCommands)
-            .feedback(initial: .idle, reducer: Planets.reducer)
+            .executeAndScan(initial: .idle, reducer: Planets.reducer)
             .consume(by: viewController.interpret, on: UIScheduler())
             .spin()
             .disposed(by: viewController.disposeBag)

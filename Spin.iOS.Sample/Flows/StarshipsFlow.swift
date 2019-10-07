@@ -44,7 +44,7 @@ extension StarshipsFlow {
 
         Spinner
             .from(function: viewController.emitCommands)
-            .feedback(initial: .idle, reducer: Starships.reducer)
+            .executeAndScan(initial: .idle, reducer: Starships.reducer)
             .consume(by: viewController.interpret, on: DispatchQueue.main)
             .spin()
             .disposed(by: &viewController.disposeBag)
