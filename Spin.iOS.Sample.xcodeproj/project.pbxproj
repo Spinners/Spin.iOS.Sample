@@ -32,7 +32,7 @@
 		1A184B69231DBED800B0033B /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A184B65231DBED700B0033B /* Path.swift */; };
 		1A184B6A231DBED800B0033B /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A184B66231DBED700B0033B /* Route.swift */; };
 		1A184B6B231DBED800B0033B /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A184B67231DBED800B0033B /* Endpoint.swift */; };
-		1A184B71231DC10900B0033B /* AlamofireNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A184B70231DC10900B0033B /* AlamofireNetworkService.swift */; };
+		1A184B71231DC10900B0033B /* ReactiveNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A184B70231DC10900B0033B /* ReactiveNetworkService.swift */; };
 		1A184B73231DC1D100B0033B /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B72231DC1D100B0033B /* Alamofire.framework */; };
 		1A184B74231DC1D100B0033B /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B72231DC1D100B0033B /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1A184B76231DC2A200B0033B /* Route+URLRequestConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A184B75231DC2A200B0033B /* Route+URLRequestConvertible.swift */; };
@@ -136,7 +136,7 @@
 		1A184B65231DBED700B0033B /* Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
 		1A184B66231DBED700B0033B /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		1A184B67231DBED800B0033B /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
-		1A184B70231DC10900B0033B /* AlamofireNetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkService.swift; sourceTree = "<group>"; };
+		1A184B70231DC10900B0033B /* ReactiveNetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveNetworkService.swift; sourceTree = "<group>"; };
 		1A184B72231DC1D100B0033B /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		1A184B75231DC2A200B0033B /* Route+URLRequestConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Route+URLRequestConvertible.swift"; sourceTree = "<group>"; };
 		1A184B77231DC2B700B0033B /* Encodable+Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Encodable+Dictionary.swift"; sourceTree = "<group>"; };
@@ -254,7 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				1A184B61231DBE9400B0033B /* NetworkService.swift */,
-				1A184B6F231DC0F700B0033B /* AlamofireNetworkService */,
+				1A184B6F231DC0F700B0033B /* ReactiveNetworkService */,
 				1A184B63231DBEC300B0033B /* Routing */,
 			);
 			path = Network;
@@ -271,14 +271,14 @@
 			path = Routing;
 			sourceTree = "<group>";
 		};
-		1A184B6F231DC0F700B0033B /* AlamofireNetworkService */ = {
+		1A184B6F231DC0F700B0033B /* ReactiveNetworkService */ = {
 			isa = PBXGroup;
 			children = (
-				1A184B70231DC10900B0033B /* AlamofireNetworkService.swift */,
+				1A184B70231DC10900B0033B /* ReactiveNetworkService.swift */,
 				1A184B77231DC2B700B0033B /* Encodable+Dictionary.swift */,
 				1A184B75231DC2A200B0033B /* Route+URLRequestConvertible.swift */,
 			);
-			path = AlamofireNetworkService;
+			path = ReactiveNetworkService;
 			sourceTree = "<group>";
 		};
 		1A184B79231DC39A00B0033B /* Routes */ = {
@@ -523,7 +523,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A5E2232232D9938002C34D0 /* PeoplesFlow.swift in Sources */,
-				1A184B71231DC10900B0033B /* AlamofireNetworkService.swift in Sources */,
+				1A184B71231DC10900B0033B /* ReactiveNetworkService.swift in Sources */,
 				1AEF2D00231DEF5A0061A132 /* FilmsReducer.swift in Sources */,
 				1AEF2CEF231DDDA40061A132 /* PlanetsFlow.swift in Sources */,
 				1A5E223E232D99EE002C34D0 /* PeoplesAction.swift in Sources */,

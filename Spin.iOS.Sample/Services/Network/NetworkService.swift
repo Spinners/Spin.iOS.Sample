@@ -12,16 +12,11 @@ import ReactiveSwift
 import RxSwift
 
 /// Errors that can be thrown by the NetworkService
-///
-/// - unauthorized: the authentication is not valid. A new authentication is required.
-/// - badRequest: the request could not be fulfilled 
-/// - forbidden: although the authentication succeeded, the request is not allowed to access the resource.
-/// - responseNotDecodable: the received response could not be parsed into the expected Model
-/// - failure: all the other kinds of possible network errors
 enum NetworkError: LocalizedError {
     case unauthorized
     case badRequest
     case forbidden
+    case emptyData
     case responseDecodingFailure(error: Error)
     case failure(error: Error)
 
@@ -30,6 +25,7 @@ enum NetworkError: LocalizedError {
         case .unauthorized: return "unauthorized"
         case .badRequest: return "badRequest"
         case .forbidden: return "forbidden"
+        case .emptyData: return "emptyData"
         case .responseDecodingFailure(error: let error):
             return "responseDecodingFailure \(error.localizedDescription)"
         case .failure(error: let innerError):

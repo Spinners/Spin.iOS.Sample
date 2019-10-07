@@ -18,22 +18,22 @@ extension Peoples {
             private let baseUrl = "swapi.co"
 
             func buildAllCommand() -> AnyCommand<Observable<Peoples.Action>, Peoples.State> {
-                let allPeoplesBusinessFunction = curry2Extended(function: Peoples.Business.all)(baseUrl)(AlamofireNetworkService())
+                let allPeoplesBusinessFunction = curry2Extended(function: Peoples.Business.all)(baseUrl)(ReactiveNetworkService())
                 return Peoples.Commands.All(allPeoplesBusiness: allPeoplesBusinessFunction).eraseToAnyCommand()
             }
             
             func buildPreviousCommand() -> AnyCommand<Observable<Peoples.Action>, Peoples.State> {
-                let pagePeoplesBusinessFunction = curry3(function: Peoples.Business.page)(baseUrl)(AlamofireNetworkService())
+                let pagePeoplesBusinessFunction = curry3(function: Peoples.Business.page)(baseUrl)(ReactiveNetworkService())
                 return Peoples.Commands.Previous(pagePeoplesBusiness: pagePeoplesBusinessFunction).eraseToAnyCommand()
             }
             
             func buildNextCommand() -> AnyCommand<Observable<Peoples.Action>, Peoples.State> {
-                let pagePeoplesBusinessFunction = curry3(function: Peoples.Business.page)(baseUrl)(AlamofireNetworkService())
+                let pagePeoplesBusinessFunction = curry3(function: Peoples.Business.page)(baseUrl)(ReactiveNetworkService())
                 return Peoples.Commands.Next(pagePeoplesBusiness: pagePeoplesBusinessFunction).eraseToAnyCommand()
             }
             
             func buildSearchCommand(query: String) -> AnyCommand<Observable<Peoples.Action>, Peoples.State> {
-                let searchPeoplesBusinessFunction = curry3(function: Peoples.Business.search)(baseUrl)(AlamofireNetworkService())
+                let searchPeoplesBusinessFunction = curry3(function: Peoples.Business.search)(baseUrl)(ReactiveNetworkService())
                 return Peoples.Commands.Search(searchPeoplesBusiness: searchPeoplesBusinessFunction, query: query).eraseToAnyCommand()
             }
         }

@@ -18,22 +18,22 @@ extension Starships {
             private let baseUrl = "swapi.co"
 
             func buildAllCommand() -> AnyCommand<AnyPublisher<Starships.Action, Never>, Starships.State> {
-                let allStarshipsBusinessFunction = curry2Extended(function: Starships.Business.all)(baseUrl)(AlamofireNetworkService())
+                let allStarshipsBusinessFunction = curry2Extended(function: Starships.Business.all)(baseUrl)(ReactiveNetworkService())
                 return Starships.Commands.All(allStarshipsBusiness: allStarshipsBusinessFunction).eraseToAnyCommand()
             }
             
             func buildPreviousCommand() -> AnyCommand<AnyPublisher<Starships.Action, Never>, Starships.State> {
-                let pageStarshipsBusinessFunction = curry3(function: Starships.Business.page)(baseUrl)(AlamofireNetworkService())
+                let pageStarshipsBusinessFunction = curry3(function: Starships.Business.page)(baseUrl)(ReactiveNetworkService())
                 return Starships.Commands.Previous(pageStarshipsBusiness: pageStarshipsBusinessFunction).eraseToAnyCommand()
             }
             
             func buildNextCommand() -> AnyCommand<AnyPublisher<Starships.Action, Never>, Starships.State> {
-                let pageStarshipsBusinessFunction = curry3(function: Starships.Business.page)(baseUrl)(AlamofireNetworkService())
+                let pageStarshipsBusinessFunction = curry3(function: Starships.Business.page)(baseUrl)(ReactiveNetworkService())
                 return Starships.Commands.Next(pageStarshipsBusiness: pageStarshipsBusinessFunction).eraseToAnyCommand()
             }
             
             func buildSearchCommand(query: String) -> AnyCommand<AnyPublisher<Starships.Action, Never>, Starships.State> {
-                let searchStarshipsBusinessFunction = curry3(function: Starships.Business.search)(baseUrl)(AlamofireNetworkService())
+                let searchStarshipsBusinessFunction = curry3(function: Starships.Business.search)(baseUrl)(ReactiveNetworkService())
                 return Starships.Commands.Search(searchStarshipsBusiness: searchStarshipsBusinessFunction, query: query).eraseToAnyCommand()
             }
         }

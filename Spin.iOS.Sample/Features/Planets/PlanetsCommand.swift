@@ -18,22 +18,22 @@ extension Planets {
             private let baseUrl = "swapi.co"
 
             func buildAllCommand() -> AnyCommand<SignalProducer<Planets.Action, Never>, Planets.State> {
-                let allPlanetsBusinessFunction = curry2Extended(function: Planets.Business.all)(baseUrl)(AlamofireNetworkService())
+                let allPlanetsBusinessFunction = curry2Extended(function: Planets.Business.all)(baseUrl)(ReactiveNetworkService())
                 return Planets.Commands.All(allPlanetsBusiness: allPlanetsBusinessFunction).eraseToAnyCommand()
             }
             
             func buildPreviousCommand() -> AnyCommand<SignalProducer<Planets.Action, Never>, Planets.State> {
-                let pagePlanetsBusinessFunction = curry3(function: Planets.Business.page)(baseUrl)(AlamofireNetworkService())
+                let pagePlanetsBusinessFunction = curry3(function: Planets.Business.page)(baseUrl)(ReactiveNetworkService())
                 return Planets.Commands.Previous(pagePlanetsBusiness: pagePlanetsBusinessFunction).eraseToAnyCommand()
             }
             
             func buildNextCommand() -> AnyCommand<SignalProducer<Planets.Action, Never>, Planets.State> {
-                let pagePlanetsBusinessFunction = curry3(function: Planets.Business.page)(baseUrl)(AlamofireNetworkService())
+                let pagePlanetsBusinessFunction = curry3(function: Planets.Business.page)(baseUrl)(ReactiveNetworkService())
                 return Planets.Commands.Next(pagePlanetsBusiness: pagePlanetsBusinessFunction).eraseToAnyCommand()
             }
             
             func buildSearchCommand(query: String) -> AnyCommand<SignalProducer<Planets.Action, Never>, Planets.State> {
-                let searchPlanetsBusinessFunction = curry3(function: Planets.Business.search)(baseUrl)(AlamofireNetworkService())
+                let searchPlanetsBusinessFunction = curry3(function: Planets.Business.search)(baseUrl)(ReactiveNetworkService())
                 return Planets.Commands.Search(searchPlanetsBusiness: searchPlanetsBusinessFunction, query: query).eraseToAnyCommand()
             }
         }
