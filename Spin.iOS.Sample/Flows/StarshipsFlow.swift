@@ -45,12 +45,12 @@ extension StarshipsFlow {
         Spinner
             .from(function: viewController.emitCommands)
             .feedback(initial: .idle, reducer: Starships.reducer)
-            .consume(by: viewController.interpret, on: MainScheduler.instance)
+            .consume(by: viewController.interpret, on: DispatchQueue.main)
             .spin()
-            .disposed(by: viewController.disposeBag)
+            .disposed(by: &viewController.disposeBag)
 
         self.rootViewController.pushViewController(viewController, animated: true)
 
-        return .one(flowContributor: .contribute(withNext: viewController))
+        return .none
     }
 }

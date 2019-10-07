@@ -46,15 +46,15 @@ extension AppFlow {
         Flows.whenReady(flow1: planetsFlow, flow2: peoplesFlow, flow3: starshipsFlow) { [weak self] (planetsRoot, peoplesRoot, starshipsRoot) in
             let tabBarItem1 = UITabBarItem(title: "Planets", image: UIImage(systemName: "mappin.and.ellipse"), selectedImage: nil)
             planetsRoot.tabBarItem = tabBarItem1
-            planetsRoot.title = "Planets"
+            planetsRoot.title = "Planets (Reactive)"
             
             let tabBarItem2 = UITabBarItem(title: "Peoples", image: UIImage(systemName: "person"), selectedImage: nil)
             peoplesRoot.tabBarItem = tabBarItem2
-            peoplesRoot.title = "Peoples"
+            peoplesRoot.title = "Peoples (Rx)"
 
             let tabBarItem3 = UITabBarItem(title: "Starships", image: UIImage(systemName: "airplane"), selectedImage: nil)
             starshipsRoot.tabBarItem = tabBarItem3
-            starshipsRoot.title = "Starships"
+            starshipsRoot.title = "Starships (Combine)"
             
             self?.rootViewController.setViewControllers([planetsRoot, peoplesRoot, starshipsRoot], animated: false)
         }

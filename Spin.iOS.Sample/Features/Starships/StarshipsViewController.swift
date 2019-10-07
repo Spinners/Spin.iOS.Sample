@@ -6,34 +6,31 @@
 //  Copyright © 2019 Spinners. All rights reserved.
 //
 
+import Combine
 import Reusable
-import RxFlow
-import RxRelay
-import RxSwift
 import Spin
 import UIKit
 
-class StarshipsViewController: UIViewController, StoryboardBased, Stepper {
+class StarshipsViewController: UIViewController, StoryboardBased {
     
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var previouxButton: UIButton!
     @IBOutlet private weak var nextButton: UIButton!
     
-    let steps = PublishRelay<Step>()
-    let disposeBag = DisposeBag()
+    var disposeBag = [AnyCancellable]()
     
     private var datasource = [Starship]()
     
     var commandBuilder: Starships.Commands.Builder!
-    let commandsRelay = PublishRelay<AnyCommand<Observable<Starships.Action>, Starships.State>>()
+    let commandsSubject = PassthroughSubject<AnyCommand<AnyPublisher<Starships.Action, Never>, Starships.State>, Never>()
         
     @IBAction func previousTapped(_ sender: UIButton) {
-        self.commandsRelay.accept(self.commandBuilder.buildPreviousCommand())
+        self.commandsSubject.send(self.commandBuilder.buildPreviousCommand())
     }
     
     @IBAction func nextTapped(_ sender: Any) {
-        self.commandsRelay.accept(self.commandBuilder.buildNextCommand())
+        self.commandsSubject.send(self.commandBuilder.buildNextCommand())
     }
     
     override func viewDidLoad() {
@@ -43,13 +40,13 @@ class StarshipsViewController: UIViewController, StoryboardBased, Stepper {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.commandsRelay.accept(self.commandBuilder.buildAllCommand())
+        self.commandsSubject.send(self.commandBuilder.buildAllCommand())
     }
 }
 
 extension StarshipsViewController {
-    func emitCommands() -> Observable<AnyCommand<Observable<Starships.Action>, Starships.State>> {
-        return self.commandsRelay.asObservable()
+    func emitCommands() -> AnyPublisher<AnyCommand<AnyPublisher<Starships.Action, Never>, Starships.State>, Never> {
+        return self.commandsSubject.eraseToAnyPublisher()
     }
 }
 

@@ -6,8 +6,9 @@
 //  Copyright © 2019 Spinners. All rights reserved.
 //
 
-import RxSwift
+import ReactiveSwift
 import Spin
+import Spin_ReactiveSwift
 
 extension Planets {
     enum Commands {
@@ -16,75 +17,79 @@ extension Planets {
             
             private let baseUrl = "swapi.co"
 
-            func buildAllCommand() -> AnyCommand<Observable<Planets.Action>, Planets.State> {
+            func buildAllCommand() -> AnyCommand<SignalProducer<Planets.Action, Never>, Planets.State> {
                 let allPlanetsBusinessFunction = curry2Extended(function: Planets.Business.all)(baseUrl)(AlamofireNetworkService())
                 return Planets.Commands.All(allPlanetsBusiness: allPlanetsBusinessFunction).eraseToAnyCommand()
             }
             
-            func buildPreviousCommand() -> AnyCommand<Observable<Planets.Action>, Planets.State> {
+            func buildPreviousCommand() -> AnyCommand<SignalProducer<Planets.Action, Never>, Planets.State> {
                 let pagePlanetsBusinessFunction = curry3(function: Planets.Business.page)(baseUrl)(AlamofireNetworkService())
                 return Planets.Commands.Previous(pagePlanetsBusiness: pagePlanetsBusinessFunction).eraseToAnyCommand()
             }
             
-            func buildNextCommand() -> AnyCommand<Observable<Planets.Action>, Planets.State> {
+            func buildNextCommand() -> AnyCommand<SignalProducer<Planets.Action, Never>, Planets.State> {
                 let pagePlanetsBusinessFunction = curry3(function: Planets.Business.page)(baseUrl)(AlamofireNetworkService())
                 return Planets.Commands.Next(pagePlanetsBusiness: pagePlanetsBusinessFunction).eraseToAnyCommand()
             }
             
-            func buildSearchCommand(query: String) -> AnyCommand<Observable<Planets.Action>, Planets.State> {
+            func buildSearchCommand(query: String) -> AnyCommand<SignalProducer<Planets.Action, Never>, Planets.State> {
                 let searchPlanetsBusinessFunction = curry3(function: Planets.Business.search)(baseUrl)(AlamofireNetworkService())
                 return Planets.Commands.Search(searchPlanetsBusiness: searchPlanetsBusinessFunction, query: query).eraseToAnyCommand()
             }
         }
         
         struct All: Command {
-            let allPlanetsBusiness: () -> Single<([Planet], Int?, Int?)>
+            let allPlanetsBusiness: () -> SignalProducer<([Planet], Int?, Int?), NetworkError>
             
-            func execute(basedOn state: Planets.State) -> Observable<Planets.Action> {
+            func execute(basedOn state: Planets.State) -> SignalProducer<Planets.Action, Never> {
                 return self.allPlanetsBusiness()
-                .asObservable()
-                .map { .succeedLoad(planets: $0.0, previousPage: $0.1, nextPage: $0.2) }
-                .catchErrorJustReturn(.failLoad)
-                .startWith(.startLoad)
+                    .map { .succeedLoad(planets: $0.0, previousPage: $0.1, nextPage: $0.2) }
+                    .flatMapError { (error) -> SignalProducer<Planets.Action, Never> in
+                        return SignalProducer<Planets.Action, Never>(value: .failLoad)
+                }
+                .prefix(value: .startLoad)
             }
         }
         
         struct Previous: Command {
-            let pagePlanetsBusiness: (Int) -> Single<([Planet], Int?, Int?)>
+            let pagePlanetsBusiness: (Int) -> SignalProducer<([Planet], Int?, Int?), NetworkError>
             
-            func execute(basedOn state: Planets.State) -> Observable<Planets.Action> {
-                guard let previousPage = state.previousPage else { return .empty() }
+            func execute(basedOn state: Planets.State) -> SignalProducer<Planets.Action, Never> {
+                guard let previousPage = state.previousPage else { return SignalProducer<Planets.Action, Never>.empty }
                 return self.pagePlanetsBusiness(previousPage)
-                    .asObservable()
                     .map { .succeedLoad(planets: $0.0, previousPage: $0.1, nextPage: $0.2) }
-                    .catchErrorJustReturn(.failLoad)
-                    .startWith(.startLoad)
+                    .flatMapError { (error) -> SignalProducer<Planets.Action, Never> in
+                        return SignalProducer<Planets.Action, Never>(value: .failLoad)
+                }
+                .prefix(value: .startLoad)
             }
         }
         
         struct Next: Command {
-            let pagePlanetsBusiness: (Int) -> Single<([Planet], Int?, Int?)>
+            let pagePlanetsBusiness: (Int) -> SignalProducer<([Planet], Int?, Int?), NetworkError>
             
-            func execute(basedOn state: Planets.State) -> Observable<Planets.Action> {
-                guard let nextPage = state.nextPage else { return .empty() }
+            func execute(basedOn state: Planets.State) -> SignalProducer<Planets.Action, Never> {
+                guard let nextPage = state.nextPage else { return SignalProducer<Planets.Action, Never>.empty }
                 return self.pagePlanetsBusiness(nextPage)
-                    .asObservable()
                     .map { .succeedLoad(planets: $0.0, previousPage: $0.1, nextPage: $0.2) }
-                    .catchErrorJustReturn(.failLoad)
-                    .startWith(.startLoad)
+                    .flatMapError { (error) -> SignalProducer<Planets.Action, Never> in
+                        return SignalProducer<Planets.Action, Never>(value: .failLoad)
+                }
+                .prefix(value: .startLoad)
             }
         }
         
         struct Search: Command {
-            let searchPlanetsBusiness: (String) -> Single<[Planet]>
+            let searchPlanetsBusiness: (String) -> SignalProducer<[Planet], NetworkError>
             let query: String
             
-            func execute(basedOn state: Planets.State) -> Observable<Planets.Action> {
+            func execute(basedOn state: Planets.State) -> SignalProducer<Planets.Action, Never> {
                 return self.searchPlanetsBusiness(self.query)
-                .asObservable()
-                .map { .succeedLoad(planets: $0, previousPage: nil, nextPage: nil) }
-                .catchErrorJustReturn(.failLoad)
-                .startWith(.startLoad)
+                    .map { .succeedLoad(planets: $0, previousPage: nil, nextPage: nil) }
+                    .flatMapError { (error) -> SignalProducer<Planets.Action, Never> in
+                        return SignalProducer<Planets.Action, Never>(value: .failLoad)
+                }
+                .prefix(value: .startLoad)
             }
         }
     }

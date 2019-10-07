@@ -7,10 +7,9 @@
 //
 
 import RxFlow
-import RxSwift
-import RxRelay
+import ReactiveSwift
 import Spin
-import Spin_RxSwift
+import Spin_ReactiveSwift
 import UIKit
 
 class PlanetsFlow: Flow {
@@ -45,12 +44,12 @@ extension PlanetsFlow {
         Spinner
             .from(function: viewController.emitCommands)
             .feedback(initial: .idle, reducer: Planets.reducer)
-            .consume(by: viewController.interpret, on: MainScheduler.instance)
+            .consume(by: viewController.interpret, on: UIScheduler())
             .spin()
             .disposed(by: viewController.disposeBag)
         
         self.rootViewController.pushViewController(viewController, animated: true)
         
-        return .one(flowContributor: .contribute(withNext: viewController))
+        return .none
     }
 }

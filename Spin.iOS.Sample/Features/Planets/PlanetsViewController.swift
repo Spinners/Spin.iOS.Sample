@@ -6,34 +6,32 @@
 //  Copyright © 2019 Spinners. All rights reserved.
 //
 
+import ReactiveSwift
 import Reusable
-import RxFlow
-import RxRelay
-import RxSwift
 import Spin
+import Spin_ReactiveSwift
 import UIKit
 
-class PlanetsViewController: UIViewController, StoryboardBased, Stepper {
+class PlanetsViewController: UIViewController, StoryboardBased {
     
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var previouxButton: UIButton!
     @IBOutlet private weak var nextButton: UIButton!
     
-    let steps = PublishRelay<Step>()
-    let disposeBag = DisposeBag()
+    let disposeBag = CompositeDisposable()
     
     private var datasource = [Planet]()
     
     var commandBuilder: Planets.Commands.Builder!
-    let commandsRelay = PublishRelay<AnyCommand<Observable<Planets.Action>, Planets.State>>()
-        
+    let commandSignal = Signal<AnyCommand<SignalProducer<Planets.Action, Never>, Planets.State>, Never>.pipe()
+
     @IBAction func previousTapped(_ sender: UIButton) {
-        self.commandsRelay.accept(self.commandBuilder.buildPreviousCommand())
+        self.commandSignal.input.send(value: self.commandBuilder.buildPreviousCommand())
     }
     
     @IBAction func nextTapped(_ sender: Any) {
-        self.commandsRelay.accept(self.commandBuilder.buildNextCommand())
+        self.commandSignal.input.send(value: self.commandBuilder.buildNextCommand())
     }
     
     override func viewDidLoad() {
@@ -43,13 +41,13 @@ class PlanetsViewController: UIViewController, StoryboardBased, Stepper {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.commandsRelay.accept(self.commandBuilder.buildAllCommand())
+        self.commandSignal.input.send(value: self.commandBuilder.buildAllCommand())
     }
 }
 
 extension PlanetsViewController {
-    func emitCommands() -> Observable<AnyCommand<Observable<Planets.Action>, Planets.State>> {
-        return self.commandsRelay.asObservable()
+    func emitCommands() -> SignalProducer<AnyCommand<SignalProducer<Planets.Action, Never>, Planets.State>, Never> {
+        return self.commandSignal.output.producer
     }
 }
 

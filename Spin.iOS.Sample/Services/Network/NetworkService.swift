@@ -6,7 +6,9 @@
 //  Copyright © 2018 Genetec. All rights reserved.
 //
 
+import Combine
 import Foundation
+import ReactiveSwift
 import RxSwift
 
 /// Errors that can be thrown by the NetworkService
@@ -37,5 +39,7 @@ enum NetworkError: LocalizedError {
 }
 
 protocol NetworkService {
-    func fetch<EndpointType: Endpoint> (route: Route<EndpointType>) -> Single<EndpointType.ResponseModel>
+    func fetchRx<EndpointType: Endpoint> (route: Route<EndpointType>) -> Single<EndpointType.ResponseModel>
+    func fetchReactive<EndpointType: Endpoint> (route: Route<EndpointType>) -> SignalProducer<EndpointType.ResponseModel, NetworkError>
+    func fetchCombine<EndpointType: Endpoint> (route: Route<EndpointType>) -> AnyPublisher<EndpointType.ResponseModel, NetworkError>
 }

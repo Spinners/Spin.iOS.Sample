@@ -6,7 +6,9 @@
 //  Copyright © 2018 Genetec. All rights reserved.
 //
 
+import Combine
 import RxSwift
+import ReactiveSwift
 import Alamofire
 
 /// The only aim of the AlamofireNetworkService is to execute requests
@@ -48,9 +50,9 @@ public final class AlamofireNetworkService {
     ///   - route: the Route to fetch
     ///   - sessionManager: the SessionManager that will execute the Route
     /// - Returns: the Model parsed from the response
-    private func fetch<EndpointType: Endpoint> (route: Route<EndpointType>,
-                                                withSessionManager sessionManager: SessionManager) -> Single<EndpointType.ResponseModel> {
-        return Single<EndpointType.ResponseModel>.create { observer -> Disposable in
+    private func fetchRx<EndpointType: Endpoint> (route: Route<EndpointType>,
+                                                  withSessionManager sessionManager: SessionManager) -> Single<EndpointType.ResponseModel> {
+        return Single<EndpointType.ResponseModel>.create { observer -> RxSwift.Disposable in
             let request = sessionManager
                 .request(route)
                 .validate(statusCode: 200..<300)
@@ -79,6 +81,48 @@ public final class AlamofireNetworkService {
             }
         }
     }
+
+    /// Fetches a Route with the appropriate SessionManager
+    ///
+    /// - Parameters:
+    ///   - route: the Route to fetch
+    ///   - sessionManager: the SessionManager that will execute the Route
+    /// - Returns: the Model parsed from the response
+    private func fetchReactive<EndpointType: Endpoint> (route: Route<EndpointType>,
+                                                        withSessionManager sessionManager: SessionManager) -> SignalProducer<EndpointType.ResponseModel, NetworkError> {
+        guard let request = try? route.asURLRequest() else { return SignalProducer<EndpointType.ResponseModel, NetworkError>(error: .badRequest) }
+
+
+        return URLSession
+            .shared
+            .reactive
+            .data(with: request)
+            .attemptMap { (dataAndResponse) -> EndpointType.ResponseModel in
+                let model = try JSONDecoder().decode(EndpointType.ResponseModel.self, from: dataAndResponse.0)
+                return model
+        }
+        .mapError { error in return NetworkError.failure(error: error) }
+    }
+
+    /// Fetches a Route with the appropriate SessionManager
+    ///
+    /// - Parameters:
+    ///   - route: the Route to fetch
+    ///   - sessionManager: the SessionManager that will execute the Route
+    /// - Returns: the Model parsed from the response
+    private func fetchCombine<EndpointType: Endpoint> (route: Route<EndpointType>,
+                                                       withSessionManager sessionManager: SessionManager) -> AnyPublisher<EndpointType.ResponseModel, NetworkError> {
+
+        guard let request = try? route.asURLRequest() else { return Fail<EndpointType.ResponseModel, NetworkError>(error: .badRequest).eraseToAnyPublisher() }
+
+        return URLSession
+            .shared
+            .dataTaskPublisher(for: request)
+            .map { $0.data }
+            .decode(type: EndpointType.ResponseModel.self, decoder: JSONDecoder())
+            .mapError { error in return NetworkError.failure(error: error) }
+            .eraseToAnyPublisher()
+    }
 }
 
 extension AlamofireNetworkService: NetworkService {
@@ -88,12 +132,40 @@ extension AlamofireNetworkService: NetworkService {
     ///
     /// - Parameter route: the Route to fetch
     /// - Returns: the Model parsed from the response
-    func fetch<EndpointType: Endpoint> (route: Route<EndpointType>) -> Single<EndpointType.ResponseModel> {
+    func fetchRx<EndpointType: Endpoint> (route: Route<EndpointType>) -> Single<EndpointType.ResponseModel> {
 
         // Pick the suitable SessionManager according to the Route Policy
         let sessionManager = self.sessionManager(fromRoute: route)
 
         // fetch the Route with this SessionManager
-        return self.fetch(route: route, withSessionManager: sessionManager)
+        return self.fetchRx(route: route, withSessionManager: sessionManager)
+    }
+
+    /// Fetches a Route. A Route is associated with a Decodable Model that will be parsed and returned
+    /// as a result of this function.
+    ///
+    /// - Parameter route: the Route to fetch
+    /// - Returns: the Model parsed from the response
+    func fetchReactive<EndpointType: Endpoint> (route: Route<EndpointType>) -> SignalProducer<EndpointType.ResponseModel, NetworkError> {
+
+        // Pick the suitable SessionManager according to the Route Policy
+        let sessionManager = self.sessionManager(fromRoute: route)
+
+        // fetch the Route with this SessionManager
+        return self.fetchReactive(route: route, withSessionManager: sessionManager)
+    }
+
+    /// Fetches a Route. A Route is associated with a Decodable Model that will be parsed and returned
+    /// as a result of this function.
+    ///
+    /// - Parameter route: the Route to fetch
+    /// - Returns: the Model parsed from the response
+    func fetchCombine<EndpointType: Endpoint> (route: Route<EndpointType>) -> AnyPublisher<EndpointType.ResponseModel, NetworkError> {
+
+        // Pick the suitable SessionManager according to the Route Policy
+        let sessionManager = self.sessionManager(fromRoute: route)
+
+        // fetch the Route with this SessionManager
+        return self.fetchCombine(route: route, withSessionManager: sessionManager)
     }
 }

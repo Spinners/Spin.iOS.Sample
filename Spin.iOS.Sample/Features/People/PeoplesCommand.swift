@@ -8,6 +8,7 @@
 
 import RxSwift
 import Spin
+import Spin_RxSwift
 
 extension Peoples {
     enum Commands {

@@ -51,6 +51,6 @@ extension PeoplesFlow {
         
         self.rootViewController.pushViewController(viewController, animated: true)
         
-        return .one(flowContributor: .contribute(withNext: viewController))
+        return .none
     }
 }

@@ -88,6 +88,8 @@
 		747C3222234A9BEE001FC6B3 /* StarshipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C321C234A9BEE001FC6B3 /* StarshipsViewController.swift */; };
 		747C3223234A9BEE001FC6B3 /* StarshipsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C321D234A9BEE001FC6B3 /* StarshipsReducer.swift */; };
 		747C3224234A9BEE001FC6B3 /* StarshipsAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C321E234A9BEE001FC6B3 /* StarshipsAction.swift */; };
+		747C3225234ABA7D001FC6B3 /* Spin_Combine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3A231DAB9000B0033B /* Spin_Combine.framework */; };
+		747C3226234ABA7D001FC6B3 /* Spin_Combine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3A231DAB9000B0033B /* Spin_Combine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -107,6 +109,7 @@
 				1A184B4E231DAB9000B0033B /* Spin.framework in Embed Frameworks */,
 				1A184B4C231DAB9000B0033B /* Spin_ReactiveSwift.framework in Embed Frameworks */,
 				1A184B46231DAB9000B0033B /* Spin_RxSwift.framework in Embed Frameworks */,
+				747C3226234ABA7D001FC6B3 /* Spin_Combine.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,6 +208,7 @@
 				1A184B4D231DAB9000B0033B /* Spin.framework in Frameworks */,
 				1A184B4B231DAB9000B0033B /* Spin_ReactiveSwift.framework in Frameworks */,
 				1A184B45231DAB9000B0033B /* Spin_RxSwift.framework in Frameworks */,
+				747C3225234ABA7D001FC6B3 /* Spin_Combine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

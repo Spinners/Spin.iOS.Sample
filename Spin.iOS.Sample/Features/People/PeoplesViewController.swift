@@ -7,20 +7,19 @@
 //
 
 import Reusable
-import RxFlow
-import RxRelay
 import RxSwift
+import RxRelay
 import Spin
+import Spin_RxSwift
 import UIKit
 
-class PeoplesViewController: UIViewController, StoryboardBased, Stepper {
+class PeoplesViewController: UIViewController, StoryboardBased {
     
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var previouxButton: UIButton!
     @IBOutlet private weak var nextButton: UIButton!
     
-    let steps = PublishRelay<Step>()
     let disposeBag = DisposeBag()
     
     private var datasource = [People]()
