@@ -67,6 +67,8 @@ extension StarshipsViewController {
         case .loading:
             self.activityIndicator.startAnimating()
             self.tableView.alpha = 0.5
+            self.previouxButton.isEnabled = false
+            self.nextButton.isEnabled = false
         case .loaded(let starships, let previous, let next):
             self.activityIndicator.stopAnimating()
             self.tableView.alpha = 1
