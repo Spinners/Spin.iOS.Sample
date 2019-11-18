@@ -18,8 +18,8 @@ extension Planets {
             private let baseUrl = "swapi.co"
 
             func buildAllCommand() -> AnyCommand<SignalProducer<Planets.Action, Never>, Planets.State> {
-                let allPlanetsBusinessFunction = curry2Extended(function: Planets.Business.all)(baseUrl)(ReactiveNetworkService())
-                return Planets.Commands.All(allPlanetsBusiness: allPlanetsBusinessFunction).eraseToAnyCommand()
+                let pagePlanetsBusinessFunction = curry3(function: Planets.Business.page)(baseUrl)(ReactiveNetworkService())
+                return Planets.Commands.All(pagePlanetsBusiness: pagePlanetsBusinessFunction).eraseToAnyCommand()
             }
             
             func buildPreviousCommand() -> AnyCommand<SignalProducer<Planets.Action, Never>, Planets.State> {
@@ -39,10 +39,10 @@ extension Planets {
         }
         
         struct All: Command {
-            let allPlanetsBusiness: () -> SignalProducer<([Planet], Int?, Int?), NetworkError>
+            let pagePlanetsBusiness: (Int?) -> SignalProducer<([Planet], Int?, Int?), NetworkError>
             
             func execute(basedOn state: Planets.State) -> SignalProducer<Planets.Action, Never> {
-                return self.allPlanetsBusiness()
+                return self.pagePlanetsBusiness(nil)
                     .map { .succeedLoad(planets: $0.0, previousPage: $0.1, nextPage: $0.2) }
                     .flatMapError { (error) -> SignalProducer<Planets.Action, Never> in
                         return SignalProducer<Planets.Action, Never>(value: .failLoad)
@@ -52,7 +52,7 @@ extension Planets {
         }
         
         struct Previous: Command {
-            let pagePlanetsBusiness: (Int) -> SignalProducer<([Planet], Int?, Int?), NetworkError>
+            let pagePlanetsBusiness: (Int?) -> SignalProducer<([Planet], Int?, Int?), NetworkError>
             
             func execute(basedOn state: Planets.State) -> SignalProducer<Planets.Action, Never> {
                 guard let previousPage = state.previousPage else { return SignalProducer<Planets.Action, Never>.empty }
@@ -66,7 +66,7 @@ extension Planets {
         }
         
         struct Next: Command {
-            let pagePlanetsBusiness: (Int) -> SignalProducer<([Planet], Int?, Int?), NetworkError>
+            let pagePlanetsBusiness: (Int?) -> SignalProducer<([Planet], Int?, Int?), NetworkError>
             
             func execute(basedOn state: Planets.State) -> SignalProducer<Planets.Action, Never> {
                 guard let nextPage = state.nextPage else { return SignalProducer<Planets.Action, Never>.empty }

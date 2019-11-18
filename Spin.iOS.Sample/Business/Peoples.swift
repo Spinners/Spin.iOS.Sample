@@ -13,18 +13,11 @@ enum Peoples {
 
 extension Peoples {
     enum Business {
-        static func all(baseUrl: String, networkService: NetworkService) -> Single<([People], Int?, Int?)> {
+        static func page(baseUrl: String, networkService: NetworkService, page: Int?) -> Single<([People], Int?, Int?)> {
             let route = Route<ListEndpoint<People>>(baseUrl: baseUrl, endpoint: ListEndpoint<People>(path: PeoplePath.peoples))
-            return networkService.fetchRx(route: route).map { listResponse -> ([People], Int?, Int?) in
-                let previousPage = listResponse.previous?.split(separator: "=").last.map { String($0) }.flatMap { Int($0) }
-                let nextPage = listResponse.next?.split(separator: "=").last.map { String($0) }.flatMap { Int($0) }
-                return (listResponse.results, previousPage, nextPage)
+            if let page = page {
+                route.set(parameter: ListRequest(page: page))
             }
-        }
-        
-        static func page(baseUrl: String, networkService: NetworkService, page: Int) -> Single<([People], Int?, Int?)> {
-            let route = Route<ListEndpoint<People>>(baseUrl: baseUrl, endpoint: ListEndpoint<People>(path: PeoplePath.peoples))
-            route.set(parameter: ListRequest(page: page))
             return networkService.fetchRx(route: route).map { listResponse -> ([People], Int?, Int?) in
                 let previousPage = listResponse.previous?.split(separator: "=").last.map { String($0) }.flatMap { Int($0) }
                 let nextPage = listResponse.next?.split(separator: "=").last.map { String($0) }.flatMap { Int($0) }

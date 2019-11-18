@@ -18,8 +18,8 @@ extension Peoples {
             private let baseUrl = "swapi.co"
 
             func buildAllCommand() -> AnyCommand<Observable<Peoples.Action>, Peoples.State> {
-                let allPeoplesBusinessFunction = curry2Extended(function: Peoples.Business.all)(baseUrl)(ReactiveNetworkService())
-                return Peoples.Commands.All(allPeoplesBusiness: allPeoplesBusinessFunction).eraseToAnyCommand()
+                let pagePeoplesBusinessFunction = curry3(function: Peoples.Business.page)(baseUrl)(ReactiveNetworkService())
+                return Peoples.Commands.All(pagePeoplesBusinessFunction: pagePeoplesBusinessFunction).eraseToAnyCommand()
             }
             
             func buildPreviousCommand() -> AnyCommand<Observable<Peoples.Action>, Peoples.State> {
@@ -39,10 +39,10 @@ extension Peoples {
         }
         
         struct All: Command {
-            let allPeoplesBusiness: () -> Single<([People], Int?, Int?)>
+            let pagePeoplesBusinessFunction: (Int?) -> Single<([People], Int?, Int?)>
             
             func execute(basedOn state: Peoples.State) -> Observable<Peoples.Action> {
-                return self.allPeoplesBusiness()
+                return self.pagePeoplesBusinessFunction(nil)
                 .asObservable()
                 .map { .succeedLoad(peoples: $0.0, previousPage: $0.1, nextPage: $0.2) }
                 .catchErrorJustReturn(.failLoad)
@@ -51,7 +51,7 @@ extension Peoples {
         }
         
         struct Previous: Command {
-            let pagePeoplesBusiness: (Int) -> Single<([People], Int?, Int?)>
+            let pagePeoplesBusiness: (Int?) -> Single<([People], Int?, Int?)>
             
             func execute(basedOn state: Peoples.State) -> Observable<Peoples.Action> {
                 guard let previousPage = state.previousPage else { return .empty() }
@@ -64,7 +64,7 @@ extension Peoples {
         }
         
         struct Next: Command {
-            let pagePeoplesBusiness: (Int) -> Single<([People], Int?, Int?)>
+            let pagePeoplesBusiness: (Int?) -> Single<([People], Int?, Int?)>
             
             func execute(basedOn state: Peoples.State) -> Observable<Peoples.Action> {
                 guard let nextPage = state.nextPage else { return .empty() }

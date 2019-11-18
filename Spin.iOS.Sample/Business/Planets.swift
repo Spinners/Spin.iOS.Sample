@@ -13,18 +13,11 @@ enum Planets {
 
 extension Planets {
     enum Business {
-        static func all(baseUrl: String, networkService: NetworkService) -> SignalProducer<([Planet], Int?, Int?), NetworkError> {
+        static func page(baseUrl: String, networkService: NetworkService, page: Int?) -> SignalProducer<([Planet], Int?, Int?), NetworkError> {
             let route = Route<ListEndpoint<Planet>>(baseUrl: baseUrl, endpoint: ListEndpoint<Planet>(path: PlanetsPath.planets))
-            return networkService.fetchReactive(route: route).map { listResponse -> ([Planet], Int?, Int?) in
-                let previousPage = listResponse.previous?.split(separator: "=").last.map { String($0) }.flatMap { Int($0) }
-                let nextPage = listResponse.next?.split(separator: "=").last.map { String($0) }.flatMap { Int($0) }
-                return (listResponse.results, previousPage, nextPage)
+            if let page = page {
+                route.set(parameter: ListRequest(page: page))
             }
-        }
-
-        static func page(baseUrl: String, networkService: NetworkService, page: Int) -> SignalProducer<([Planet], Int?, Int?), NetworkError> {
-            let route = Route<ListEndpoint<Planet>>(baseUrl: baseUrl, endpoint: ListEndpoint<Planet>(path: PlanetsPath.planets))
-            route.set(parameter: ListRequest(page: page))
             return networkService.fetchReactive(route: route).map { listResponse -> ([Planet], Int?, Int?) in
                 let previousPage = listResponse.previous?.split(separator: "=").last.map { String($0) }.flatMap { Int($0) }
                 let nextPage = listResponse.next?.split(separator: "=").last.map { String($0) }.flatMap { Int($0) }

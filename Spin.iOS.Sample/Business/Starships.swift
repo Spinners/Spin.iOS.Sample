@@ -13,18 +13,11 @@ enum Starships {
 
 extension Starships {
     enum Business {
-        static func all(baseUrl: String, networkService: NetworkService) -> AnyPublisher<([Starship], Int?, Int?), NetworkError> {
+        static func page(baseUrl: String, networkService: NetworkService, page: Int?) -> AnyPublisher<([Starship], Int?, Int?), NetworkError> {
             let route = Route<ListEndpoint<Starship>>(baseUrl: baseUrl, endpoint: ListEndpoint<Starship>(path: StarshipsPath.starships))
-            return networkService.fetchCombine(route: route).map { listResponse -> ([Starship], Int?, Int?) in
-                let previousPage = listResponse.previous?.split(separator: "=").last.map { String($0) }.flatMap { Int($0) }
-                let nextPage = listResponse.next?.split(separator: "=").last.map { String($0) }.flatMap { Int($0) }
-                return (listResponse.results, previousPage, nextPage)
-            }.eraseToAnyPublisher()
-        }
-
-        static func page(baseUrl: String, networkService: NetworkService, page: Int) -> AnyPublisher<([Starship], Int?, Int?), NetworkError> {
-            let route = Route<ListEndpoint<Starship>>(baseUrl: baseUrl, endpoint: ListEndpoint<Starship>(path: StarshipsPath.starships))
-            route.set(parameter: ListRequest(page: page))
+            if let page = page {
+                route.set(parameter: ListRequest(page: page))
+            }
             return networkService.fetchCombine(route: route).map { listResponse -> ([Starship], Int?, Int?) in
                 let previousPage = listResponse.previous?.split(separator: "=").last.map { String($0) }.flatMap { Int($0) }
                 let nextPage = listResponse.next?.split(separator: "=").last.map { String($0) }.flatMap { Int($0) }

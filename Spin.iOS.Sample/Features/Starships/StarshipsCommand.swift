@@ -18,8 +18,8 @@ extension Starships {
             private let baseUrl = "swapi.co"
 
             func buildAllCommand() -> AnyCommand<AnyPublisher<Starships.Action, Never>, Starships.State> {
-                let allStarshipsBusinessFunction = curry2Extended(function: Starships.Business.all)(baseUrl)(ReactiveNetworkService())
-                return Starships.Commands.All(allStarshipsBusiness: allStarshipsBusinessFunction).eraseToAnyCommand()
+                let pageStarshipsBusinessFunction = curry3(function: Starships.Business.page)(baseUrl)(ReactiveNetworkService())
+                return Starships.Commands.All(pageStarshipsBusinessFunction: pageStarshipsBusinessFunction).eraseToAnyCommand()
             }
             
             func buildPreviousCommand() -> AnyCommand<AnyPublisher<Starships.Action, Never>, Starships.State> {
@@ -39,10 +39,10 @@ extension Starships {
         }
         
         struct All: Command {
-            let allStarshipsBusiness: () -> AnyPublisher<([Starship], Int?, Int?), NetworkError>
+            let pageStarshipsBusinessFunction: (Int?) -> AnyPublisher<([Starship], Int?, Int?), NetworkError>
             
             func execute(basedOn state: Starships.State) -> AnyPublisher<Starships.Action, Never> {
-                return self.allStarshipsBusiness()
+                return self.pageStarshipsBusinessFunction(nil)
                 .map { .succeedLoad(starships: $0.0, previousPage: $0.1, nextPage: $0.2) }
                 .replaceError(with: .failLoad)
                 .prepend(.startLoad)
@@ -51,7 +51,7 @@ extension Starships {
         }
         
         struct Previous: Command {
-            let pageStarshipsBusiness: (Int) -> AnyPublisher<([Starship], Int?, Int?), NetworkError>
+            let pageStarshipsBusiness: (Int?) -> AnyPublisher<([Starship], Int?, Int?), NetworkError>
             
             func execute(basedOn state: Starships.State) -> AnyPublisher<Starships.Action, Never> {
                 guard let previousPage = state.previousPage else { return Empty().eraseToAnyPublisher() }
@@ -64,7 +64,7 @@ extension Starships {
         }
         
         struct Next: Command {
-            let pageStarshipsBusiness: (Int) -> AnyPublisher<([Starship], Int?, Int?), NetworkError>
+            let pageStarshipsBusiness: (Int?) -> AnyPublisher<([Starship], Int?, Int?), NetworkError>
             
             func execute(basedOn state: Starships.State) -> AnyPublisher<Starships.Action, Never> {
                 guard let nextPage = state.nextPage else { return Empty().eraseToAnyPublisher() }
