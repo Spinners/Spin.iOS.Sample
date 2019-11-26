@@ -88,8 +88,9 @@
 		747C3222234A9BEE001FC6B3 /* StarshipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C321C234A9BEE001FC6B3 /* StarshipsViewController.swift */; };
 		747C3223234A9BEE001FC6B3 /* StarshipsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C321D234A9BEE001FC6B3 /* StarshipsReducer.swift */; };
 		747C3224234A9BEE001FC6B3 /* StarshipsAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C321E234A9BEE001FC6B3 /* StarshipsAction.swift */; };
-		747C3225234ABA7D001FC6B3 /* Spin_Combine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3A231DAB9000B0033B /* Spin_Combine.framework */; };
-		747C3226234ABA7D001FC6B3 /* Spin_Combine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3A231DAB9000B0033B /* Spin_Combine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7481CCC9238CC541003AC07A /* Weakify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7481CCC8238CC541003AC07A /* Weakify.swift */; };
+		7481CCCA238CC77B003AC07A /* Spin_Combine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3A231DAB9000B0033B /* Spin_Combine.framework */; };
+		7481CCCB238CC77B003AC07A /* Spin_Combine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1A184B3A231DAB9000B0033B /* Spin_Combine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -109,7 +110,7 @@
 				1A184B4E231DAB9000B0033B /* Spin.framework in Embed Frameworks */,
 				1A184B4C231DAB9000B0033B /* Spin_ReactiveSwift.framework in Embed Frameworks */,
 				1A184B46231DAB9000B0033B /* Spin_RxSwift.framework in Embed Frameworks */,
-				747C3226234ABA7D001FC6B3 /* Spin_Combine.framework in Embed Frameworks */,
+				7481CCCB238CC77B003AC07A /* Spin_Combine.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,6 +192,7 @@
 		747C321C234A9BEE001FC6B3 /* StarshipsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarshipsViewController.swift; sourceTree = "<group>"; };
 		747C321D234A9BEE001FC6B3 /* StarshipsReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarshipsReducer.swift; sourceTree = "<group>"; };
 		747C321E234A9BEE001FC6B3 /* StarshipsAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarshipsAction.swift; sourceTree = "<group>"; };
+		7481CCC8238CC541003AC07A /* Weakify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weakify.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,7 +210,7 @@
 				1A184B4D231DAB9000B0033B /* Spin.framework in Frameworks */,
 				1A184B4B231DAB9000B0033B /* Spin_ReactiveSwift.framework in Frameworks */,
 				1A184B45231DAB9000B0033B /* Spin_RxSwift.framework in Frameworks */,
-				747C3225234ABA7D001FC6B3 /* Spin_Combine.framework in Frameworks */,
+				7481CCCA238CC77B003AC07A /* Spin_Combine.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,17 +315,17 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
-		1A184B84231DD25600B0033B /* Business */ = {
+		1A184B84231DD25600B0033B /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				1AEF2CD9231DD78A0061A132 /* Films.swift */,
-				1A184B85231DD27E00B0033B /* Peoples.swift */,
 				1AEF2CDF231DD8B00061A132 /* Planets.swift */,
-				1AEF2CE1231DD8EA0061A132 /* Species.swift */,
+				1A184B85231DD27E00B0033B /* Peoples.swift */,
 				1AEF2CDB231DD7E10061A132 /* Starships.swift */,
+				1AEF2CD9231DD78A0061A132 /* Films.swift */,
+				1AEF2CE1231DD8EA0061A132 /* Species.swift */,
 				1AEF2CDD231DD8680061A132 /* Vehicles.swift */,
 			);
-			path = Business;
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		1A5E2233232D9989002C34D0 /* People */ = {
@@ -359,7 +361,7 @@
 		1AA14F9D231C90CA00B3854F /* Spin.iOS.Sample */ = {
 			isa = PBXGroup;
 			children = (
-				1A184B84231DD25600B0033B /* Business */,
+				1A184B84231DD25600B0033B /* Entity */,
 				1AEF2CE3231DD9ED0061A132 /* Features */,
 				1AEF2CED231DDD8D0061A132 /* Flows */,
 				1A184B52231DAC1900B0033B /* Models */,
@@ -402,10 +404,10 @@
 		1AEF2CED231DDD8D0061A132 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
-				1A5E222F232D921C002C34D0 /* AppFlow.swift */,
 				1AEF2CEE231DDDA40061A132 /* PlanetsFlow.swift */,
 				1A5E2231232D9938002C34D0 /* PeoplesFlow.swift */,
 				747C3217234A9BB4001FC6B3 /* StarshipsFlow.swift */,
+				1A5E222F232D921C002C34D0 /* AppFlow.swift */,
 				1AEF2CF3231DE12C0061A132 /* AppSteps.swift */,
 			);
 			path = Flows;
@@ -417,6 +419,7 @@
 				1AEF2CFD231DE64D0061A132 /* Curry.swift */,
 				1A73E248232D8414005CDDAD /* String+URLComponents.swift */,
 				1A5E222D232D8AE9002C34D0 /* Observable+merge.swift */,
+				7481CCC8238CC541003AC07A /* Weakify.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -570,6 +573,7 @@
 				1A184B5A231DB9B200B0033B /* Vehicle.swift in Sources */,
 				1A184B86231DD27E00B0033B /* Peoples.swift in Sources */,
 				747C3220234A9BEE001FC6B3 /* StarshipsCommand.swift in Sources */,
+				7481CCC9238CC541003AC07A /* Weakify.swift in Sources */,
 				747C3210234A9505001FC6B3 /* PlanetsCommand.swift in Sources */,
 				1A184B76231DC2A200B0033B /* Route+URLRequestConvertible.swift in Sources */,
 				1A184B69231DBED800B0033B /* Path.swift in Sources */,

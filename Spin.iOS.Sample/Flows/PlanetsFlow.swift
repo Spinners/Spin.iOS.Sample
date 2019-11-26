@@ -40,11 +40,12 @@ extension PlanetsFlow {
         
         // build Spin
         let viewController = PlanetsViewController.make(commandBuilder: Planets.Commands.Builder())
-                
+        let interpretFunction = weakify(viewController) { $0.interpret(state: $1) }
+
         Spinner
             .from(function: viewController.emitCommands)
             .executeAndScan(initial: .idle, reducer: Planets.reducer)
-            .consume(by: viewController.interpret, on: UIScheduler())
+            .consume(by: interpretFunction, on: UIScheduler())
             .spin()
             .disposed(by: viewController.disposeBag)
         

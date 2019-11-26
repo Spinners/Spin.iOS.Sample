@@ -41,11 +41,12 @@ extension PeoplesFlow {
         
         // build Spin
         let viewController = PeoplesViewController.make(commandBuilder: Peoples.Commands.Builder())
+        let interpretFunction = weakify(viewController) { $0.interpret(state: $1) }
 
         Spinner
             .from(function: viewController.emitCommands)
             .executeAndScan(initial: .idle, reducer: Peoples.reducer)
-            .consume(by: viewController.interpret, on: MainScheduler.instance)
+            .consume(by: interpretFunction, on: MainScheduler.instance)
             .spin()
             .disposed(by: viewController.disposeBag)
         

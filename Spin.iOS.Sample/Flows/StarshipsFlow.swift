@@ -6,6 +6,7 @@
 //  Copyright © 2019 Spinners. All rights reserved.
 //
 
+import Combine
 import RxFlow
 import RxSwift
 import RxRelay
@@ -41,11 +42,12 @@ extension StarshipsFlow {
 
         // build Spin
         let viewController = StarshipsViewController.make(commandBuilder: Starships.Commands.Builder())
+        let interpretFunction = weakify(viewController) { $0.interpret(state: $1) }
 
         Spinner
             .from(function: viewController.emitCommands)
             .executeAndScan(initial: .idle, reducer: Starships.reducer)
-            .consume(by: viewController.interpret, on: DispatchQueue.main)
+            .consume(by: interpretFunction, on: DispatchQueue.main)
             .spin()
             .disposed(by: &viewController.disposeBag)
 
