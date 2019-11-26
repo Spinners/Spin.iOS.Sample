@@ -41,12 +41,12 @@ extension StarshipsFlow {
     func navigateToStarships() -> FlowContributors {
 
         // build Spin
-        let viewController = StarshipsViewController.make(commandBuilder: Starships.Commands.Builder())
+        let viewController = StarshipsViewController.make(commandBuilder: StarshipsFeature.Commands.Builder())
         let interpretFunction = weakify(viewController) { $0.interpret(state: $1) }
 
         Spinner
             .from(function: viewController.emitCommands)
-            .executeAndScan(initial: .idle, reducer: Starships.reducer)
+            .executeAndScan(initial: .idle, reducer: StarshipsFeature.reducer)
             .consume(by: interpretFunction, on: DispatchQueue.main)
             .spin()
             .disposed(by: &viewController.disposeBag)

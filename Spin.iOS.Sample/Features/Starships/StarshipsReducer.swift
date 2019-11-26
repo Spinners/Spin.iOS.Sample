@@ -6,8 +6,8 @@
 //  Copyright © 2019 Spinners. All rights reserved.
 //
 
-extension Starships {
-    static func reducer(state: Starships.State, action: Starships.Action) -> Starships.State {
+extension StarshipsFeature {
+    static func reducer(state: StarshipsFeature.State, action: StarshipsFeature.Action) -> StarshipsFeature.State {
         switch action {
         case .startLoad:
             return .loading

@@ -6,11 +6,11 @@
 //  Copyright © 2019 Spinners. All rights reserved.
 //
 
-extension Planets {
+extension PlanetsFeature {
     enum State {
         case idle
         case loading
-        case loaded(data: [Planet], previousPage: Int?, nextPage: Int?)
+        case loaded(data: [(Planet, Bool)], previousPage: Int?, nextPage: Int?)
         case failed
         
         struct ViewItem {

@@ -6,8 +6,8 @@
 //  Copyright © 2019 Spinners. All rights reserved.
 //
 
-extension Planets {
-    static func reducer(state: Planets.State, action: Planets.Action) -> Planets.State {
+extension PlanetsFeature {
+    static func reducer(state: PlanetsFeature.State, action: PlanetsFeature.Action) -> PlanetsFeature.State {
         switch action {
         case .startLoad:
             return .loading

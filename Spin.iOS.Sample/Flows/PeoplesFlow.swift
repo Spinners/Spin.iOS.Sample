@@ -40,12 +40,12 @@ extension PeoplesFlow {
     func navigateToPeoples() -> FlowContributors {
         
         // build Spin
-        let viewController = PeoplesViewController.make(commandBuilder: Peoples.Commands.Builder())
+        let viewController = PeoplesViewController.make(commandBuilder: PeoplesFeature.Commands.Builder())
         let interpretFunction = weakify(viewController) { $0.interpret(state: $1) }
 
         Spinner
             .from(function: viewController.emitCommands)
-            .executeAndScan(initial: .idle, reducer: Peoples.reducer)
+            .executeAndScan(initial: .idle, reducer: PeoplesFeature.reducer)
             .consume(by: interpretFunction, on: MainScheduler.instance)
             .spin()
             .disposed(by: viewController.disposeBag)

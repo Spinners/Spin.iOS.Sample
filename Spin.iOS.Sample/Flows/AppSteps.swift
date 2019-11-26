@@ -14,4 +14,6 @@ enum AppSteps: Step {
     case peoples
     case starships
     case films
+
+    case planet(planet: Planet)
 }

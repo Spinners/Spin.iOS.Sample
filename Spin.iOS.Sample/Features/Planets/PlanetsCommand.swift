@@ -10,84 +10,71 @@ import ReactiveSwift
 import Spin
 import Spin_ReactiveSwift
 
-extension Planets {
+enum PlanetsFeature {
+}
+
+extension PlanetsFeature {
     enum Commands {
         
         class Builder {
             
             private let baseUrl = "swapi.co"
 
-            func buildAllCommand() -> AnyCommand<SignalProducer<Planets.Action, Never>, Planets.State> {
-                let pagePlanetsBusinessFunction = curry3(function: Planets.Business.page)(baseUrl)(ReactiveNetworkService())
-                return Planets.Commands.All(pagePlanetsBusiness: pagePlanetsBusinessFunction).eraseToAnyCommand()
+            func buildAllCommand() -> AnyCommand<SignalProducer<PlanetsFeature.Action, Never>, PlanetsFeature.State> {
+                let loadApiFunction = curry3(function: Planets.Apis.load)(baseUrl)(ReactiveNetworkService())
+                let loadEntityFunction = curry3(function: Planets.Entity.load)(loadApiFunction)(FavoriteService.instance.isFavorite(for:))
+                return PlanetsFeature.Commands.All(loadEntityFunction: loadEntityFunction).eraseToAnyCommand()
             }
             
-            func buildPreviousCommand() -> AnyCommand<SignalProducer<Planets.Action, Never>, Planets.State> {
-                let pagePlanetsBusinessFunction = curry3(function: Planets.Business.page)(baseUrl)(ReactiveNetworkService())
-                return Planets.Commands.Previous(pagePlanetsBusiness: pagePlanetsBusinessFunction).eraseToAnyCommand()
+            func buildPreviousCommand() -> AnyCommand<SignalProducer<PlanetsFeature.Action, Never>, PlanetsFeature.State> {
+                let loadApiFunction = curry3(function: Planets.Apis.load)(baseUrl)(ReactiveNetworkService())
+                let loadEntityFunction = curry3(function: Planets.Entity.load)(loadApiFunction)(FavoriteService.instance.isFavorite(for:))
+                return PlanetsFeature.Commands.Previous(loadEntityFunction: loadEntityFunction).eraseToAnyCommand()
             }
             
-            func buildNextCommand() -> AnyCommand<SignalProducer<Planets.Action, Never>, Planets.State> {
-                let pagePlanetsBusinessFunction = curry3(function: Planets.Business.page)(baseUrl)(ReactiveNetworkService())
-                return Planets.Commands.Next(pagePlanetsBusiness: pagePlanetsBusinessFunction).eraseToAnyCommand()
-            }
-            
-            func buildSearchCommand(query: String) -> AnyCommand<SignalProducer<Planets.Action, Never>, Planets.State> {
-                let searchPlanetsBusinessFunction = curry3(function: Planets.Business.search)(baseUrl)(ReactiveNetworkService())
-                return Planets.Commands.Search(searchPlanetsBusiness: searchPlanetsBusinessFunction, query: query).eraseToAnyCommand()
+            func buildNextCommand() -> AnyCommand<SignalProducer<PlanetsFeature.Action, Never>, PlanetsFeature.State> {
+                let loadApiFunction = curry3(function: Planets.Apis.load)(baseUrl)(ReactiveNetworkService())
+                let loadEntityFunction = curry3(function: Planets.Entity.load)(loadApiFunction)(FavoriteService.instance.isFavorite(for:))
+                return PlanetsFeature.Commands.Next(loadEntityFunction: loadEntityFunction).eraseToAnyCommand()
             }
         }
         
         struct All: Command {
-            let pagePlanetsBusiness: (Int?) -> SignalProducer<([Planet], Int?, Int?), NetworkError>
+            let loadEntityFunction: (Int?) -> SignalProducer<([(Planet, Bool)], Int?, Int?), NetworkError>
             
-            func execute(basedOn state: Planets.State) -> SignalProducer<Planets.Action, Never> {
-                return self.pagePlanetsBusiness(nil)
+            func execute(basedOn state: PlanetsFeature.State) -> SignalProducer<PlanetsFeature.Action, Never> {
+                return self.loadEntityFunction(nil)
                     .map { .succeedLoad(planets: $0.0, previousPage: $0.1, nextPage: $0.2) }
-                    .flatMapError { (error) -> SignalProducer<Planets.Action, Never> in
-                        return SignalProducer<Planets.Action, Never>(value: .failLoad)
+                    .flatMapError { (error) -> SignalProducer<PlanetsFeature.Action, Never> in
+                        return SignalProducer<PlanetsFeature.Action, Never>(value: .failLoad)
                 }
                 .prefix(value: .startLoad)
             }
         }
         
         struct Previous: Command {
-            let pagePlanetsBusiness: (Int?) -> SignalProducer<([Planet], Int?, Int?), NetworkError>
+            let loadEntityFunction: (Int?) -> SignalProducer<([(Planet, Bool)], Int?, Int?), NetworkError>
             
-            func execute(basedOn state: Planets.State) -> SignalProducer<Planets.Action, Never> {
-                guard let previousPage = state.previousPage else { return SignalProducer<Planets.Action, Never>.empty }
-                return self.pagePlanetsBusiness(previousPage)
+            func execute(basedOn state: PlanetsFeature.State) -> SignalProducer<PlanetsFeature.Action, Never> {
+                guard let previousPage = state.previousPage else { return SignalProducer<PlanetsFeature.Action, Never>.empty }
+                return self.loadEntityFunction(previousPage)
                     .map { .succeedLoad(planets: $0.0, previousPage: $0.1, nextPage: $0.2) }
-                    .flatMapError { (error) -> SignalProducer<Planets.Action, Never> in
-                        return SignalProducer<Planets.Action, Never>(value: .failLoad)
+                    .flatMapError { (error) -> SignalProducer<PlanetsFeature.Action, Never> in
+                        return SignalProducer<PlanetsFeature.Action, Never>(value: .failLoad)
                 }
                 .prefix(value: .startLoad)
             }
         }
         
         struct Next: Command {
-            let pagePlanetsBusiness: (Int?) -> SignalProducer<([Planet], Int?, Int?), NetworkError>
+            let loadEntityFunction: (Int?) -> SignalProducer<([(Planet, Bool)], Int?, Int?), NetworkError>
             
-            func execute(basedOn state: Planets.State) -> SignalProducer<Planets.Action, Never> {
-                guard let nextPage = state.nextPage else { return SignalProducer<Planets.Action, Never>.empty }
-                return self.pagePlanetsBusiness(nextPage)
+            func execute(basedOn state: PlanetsFeature.State) -> SignalProducer<PlanetsFeature.Action, Never> {
+                guard let nextPage = state.nextPage else { return SignalProducer<PlanetsFeature.Action, Never>.empty }
+                return self.loadEntityFunction(nextPage)
                     .map { .succeedLoad(planets: $0.0, previousPage: $0.1, nextPage: $0.2) }
-                    .flatMapError { (error) -> SignalProducer<Planets.Action, Never> in
-                        return SignalProducer<Planets.Action, Never>(value: .failLoad)
-                }
-                .prefix(value: .startLoad)
-            }
-        }
-        
-        struct Search: Command {
-            let searchPlanetsBusiness: (String) -> SignalProducer<[Planet], NetworkError>
-            let query: String
-            
-            func execute(basedOn state: Planets.State) -> SignalProducer<Planets.Action, Never> {
-                return self.searchPlanetsBusiness(self.query)
-                    .map { .succeedLoad(planets: $0, previousPage: nil, nextPage: nil) }
-                    .flatMapError { (error) -> SignalProducer<Planets.Action, Never> in
-                        return SignalProducer<Planets.Action, Never>(value: .failLoad)
+                    .flatMapError { (error) -> SignalProducer<PlanetsFeature.Action, Never> in
+                        return SignalProducer<PlanetsFeature.Action, Never>(value: .failLoad)
                 }
                 .prefix(value: .startLoad)
             }

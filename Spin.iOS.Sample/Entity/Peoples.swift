@@ -8,20 +8,17 @@
 
 import RxSwift
 
-enum Peoples {
-}
-
 extension Peoples {
-    enum Business {
-        static func page(baseUrl: String, networkService: NetworkService, page: Int?) -> Single<([People], Int?, Int?)> {
-            let route = Route<ListEndpoint<People>>(baseUrl: baseUrl, endpoint: ListEndpoint<People>(path: PeoplePath.peoples))
-            if let page = page {
-                route.set(parameter: ListRequest(page: page))
-            }
-            return networkService.fetchRx(route: route).map { listResponse -> ([People], Int?, Int?) in
+    enum Entity {
+
+        static func load(loadApisFunction: (Int?) -> Single<ListResponse<People>>,
+                         isFavoriteFunction: @escaping (String) -> Bool,
+                         page: Int?) -> Single<([(People, Bool)], Int?, Int?)> {
+            return loadApisFunction(page).map { listResponse -> ([(People, Bool)], Int?, Int?) in
                 let previousPage = listResponse.previous?.split(separator: "=").last.map { String($0) }.flatMap { Int($0) }
                 let nextPage = listResponse.next?.split(separator: "=").last.map { String($0) }.flatMap { Int($0) }
-                return (listResponse.results, previousPage, nextPage)
+                let peoplesAndFavorite = listResponse.results.map { ($0, isFavoriteFunction($0.url)) }
+                return (peoplesAndFavorite, previousPage, nextPage)
             }
         }
         
@@ -30,7 +27,7 @@ extension Peoples {
             return networkService.fetchRx(route: route).map { $0.results }
         }
         
-        static func load(baseUrl: String, networkService: NetworkService, id: String) -> Single<People> {
+        static func loadDetail(baseUrl: String, networkService: NetworkService, id: String) -> Single<People> {
             let route = Route<EntityEndpoint<People>>(baseUrl: baseUrl, endpoint: EntityEndpoint<People>(path: PeoplePath.people(id: id)))
             return networkService.fetchRx(route: route)
         }

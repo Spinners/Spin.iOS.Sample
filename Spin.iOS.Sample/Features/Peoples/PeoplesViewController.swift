@@ -22,10 +22,10 @@ class PeoplesViewController: UIViewController, StoryboardBased {
     
     let disposeBag = DisposeBag()
     
-    private var datasource = [People]()
+    private var datasource = [(People, Bool)]()
     
-    var commandBuilder: Peoples.Commands.Builder!
-    let commandsRelay = PublishRelay<AnyCommand<Observable<Peoples.Action>, Peoples.State>>()
+    var commandBuilder: PeoplesFeature.Commands.Builder!
+    let commandsRelay = PublishRelay<AnyCommand<Observable<PeoplesFeature.Action>, PeoplesFeature.State>>()
         
     @IBAction func previousTapped(_ sender: UIButton) {
         self.commandsRelay.accept(self.commandBuilder.buildPreviousCommand())
@@ -47,13 +47,13 @@ class PeoplesViewController: UIViewController, StoryboardBased {
 }
 
 extension PeoplesViewController {
-    func emitCommands() -> Observable<AnyCommand<Observable<Peoples.Action>, Peoples.State>> {
+    func emitCommands() -> Observable<AnyCommand<Observable<PeoplesFeature.Action>, PeoplesFeature.State>> {
         return self.commandsRelay.asObservable()
     }
 }
 
 extension PeoplesViewController {
-    func interpret(state: Peoples.State) -> Void {
+    func interpret(state: PeoplesFeature.State) -> Void {
 
         guard
             self.activityIndicator != nil,
@@ -93,13 +93,14 @@ extension PeoplesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "peopleCell", for: indexPath)
-        cell.textLabel?.text = self.datasource[indexPath.row].name
+        cell.textLabel?.text = self.datasource[indexPath.row].0.name
+        cell.imageView?.image = self.datasource[indexPath.row].1 ? UIImage(systemName: "star.fill") : nil
         return cell
     }
 }
 
 extension PeoplesViewController {
-    static func make(commandBuilder: Peoples.Commands.Builder) -> PeoplesViewController {
+    static func make(commandBuilder: PeoplesFeature.Commands.Builder) -> PeoplesViewController {
         let viewController = PeoplesViewController.instantiate()
         viewController.commandBuilder = commandBuilder
         return viewController

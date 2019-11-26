@@ -10,39 +10,40 @@ import Combine
 import Spin
 import Spin_Combine
 
-extension Starships {
+enum StarshipsFeature {
+}
+
+extension StarshipsFeature {
     enum Commands {
         
         class Builder {
             
             private let baseUrl = "swapi.co"
 
-            func buildAllCommand() -> AnyCommand<AnyPublisher<Starships.Action, Never>, Starships.State> {
-                let pageStarshipsBusinessFunction = curry3(function: Starships.Business.page)(baseUrl)(ReactiveNetworkService())
-                return Starships.Commands.All(pageStarshipsBusinessFunction: pageStarshipsBusinessFunction).eraseToAnyCommand()
+            func buildAllCommand() -> AnyCommand<AnyPublisher<StarshipsFeature.Action, Never>, StarshipsFeature.State> {
+                let loadApiFunction = curry3(function: Starships.Apis.load)(baseUrl)(ReactiveNetworkService())
+                let loadEntityFunction = curry3(function: Starships.Entity.load)(loadApiFunction)(FavoriteService.instance.isFavorite(for:))
+                return StarshipsFeature.Commands.All(loadEntityFunction: loadEntityFunction).eraseToAnyCommand()
             }
             
-            func buildPreviousCommand() -> AnyCommand<AnyPublisher<Starships.Action, Never>, Starships.State> {
-                let pageStarshipsBusinessFunction = curry3(function: Starships.Business.page)(baseUrl)(ReactiveNetworkService())
-                return Starships.Commands.Previous(pageStarshipsBusiness: pageStarshipsBusinessFunction).eraseToAnyCommand()
+            func buildPreviousCommand() -> AnyCommand<AnyPublisher<StarshipsFeature.Action, Never>, StarshipsFeature.State> {
+                let loadApiFunction = curry3(function: Starships.Apis.load)(baseUrl)(ReactiveNetworkService())
+                let loadEntityFunction = curry3(function: Starships.Entity.load)(loadApiFunction)(FavoriteService.instance.isFavorite(for:))
+                return StarshipsFeature.Commands.Previous(loadEntityFunction: loadEntityFunction).eraseToAnyCommand()
             }
             
-            func buildNextCommand() -> AnyCommand<AnyPublisher<Starships.Action, Never>, Starships.State> {
-                let pageStarshipsBusinessFunction = curry3(function: Starships.Business.page)(baseUrl)(ReactiveNetworkService())
-                return Starships.Commands.Next(pageStarshipsBusiness: pageStarshipsBusinessFunction).eraseToAnyCommand()
-            }
-            
-            func buildSearchCommand(query: String) -> AnyCommand<AnyPublisher<Starships.Action, Never>, Starships.State> {
-                let searchStarshipsBusinessFunction = curry3(function: Starships.Business.search)(baseUrl)(ReactiveNetworkService())
-                return Starships.Commands.Search(searchStarshipsBusiness: searchStarshipsBusinessFunction, query: query).eraseToAnyCommand()
+            func buildNextCommand() -> AnyCommand<AnyPublisher<StarshipsFeature.Action, Never>, StarshipsFeature.State> {
+                let loadApiFunction = curry3(function: Starships.Apis.load)(baseUrl)(ReactiveNetworkService())
+                let loadEntityFunction = curry3(function: Starships.Entity.load)(loadApiFunction)(FavoriteService.instance.isFavorite(for:))
+                return StarshipsFeature.Commands.Next(loadEntityFunction: loadEntityFunction).eraseToAnyCommand()
             }
         }
         
         struct All: Command {
-            let pageStarshipsBusinessFunction: (Int?) -> AnyPublisher<([Starship], Int?, Int?), NetworkError>
+            let loadEntityFunction: (Int?) -> AnyPublisher<([(Starship, Bool)], Int?, Int?), NetworkError>
             
-            func execute(basedOn state: Starships.State) -> AnyPublisher<Starships.Action, Never> {
-                return self.pageStarshipsBusinessFunction(nil)
+            func execute(basedOn state: StarshipsFeature.State) -> AnyPublisher<StarshipsFeature.Action, Never> {
+                return self.loadEntityFunction(nil)
                 .map { .succeedLoad(starships: $0.0, previousPage: $0.1, nextPage: $0.2) }
                 .replaceError(with: .failLoad)
                 .prepend(.startLoad)
@@ -51,11 +52,11 @@ extension Starships {
         }
         
         struct Previous: Command {
-            let pageStarshipsBusiness: (Int?) -> AnyPublisher<([Starship], Int?, Int?), NetworkError>
+            let loadEntityFunction: (Int?) -> AnyPublisher<([(Starship, Bool)], Int?, Int?), NetworkError>
             
-            func execute(basedOn state: Starships.State) -> AnyPublisher<Starships.Action, Never> {
+            func execute(basedOn state: StarshipsFeature.State) -> AnyPublisher<StarshipsFeature.Action, Never> {
                 guard let previousPage = state.previousPage else { return Empty().eraseToAnyPublisher() }
-                return self.pageStarshipsBusiness(previousPage)
+                return self.loadEntityFunction(previousPage)
                     .map { .succeedLoad(starships: $0.0, previousPage: $0.1, nextPage: $0.2) }
                     .replaceError(with: .failLoad)
                     .prepend(.startLoad)
@@ -64,28 +65,15 @@ extension Starships {
         }
         
         struct Next: Command {
-            let pageStarshipsBusiness: (Int?) -> AnyPublisher<([Starship], Int?, Int?), NetworkError>
+            let loadEntityFunction: (Int?) -> AnyPublisher<([(Starship, Bool)], Int?, Int?), NetworkError>
             
-            func execute(basedOn state: Starships.State) -> AnyPublisher<Starships.Action, Never> {
+            func execute(basedOn state: StarshipsFeature.State) -> AnyPublisher<StarshipsFeature.Action, Never> {
                 guard let nextPage = state.nextPage else { return Empty().eraseToAnyPublisher() }
-                return self.pageStarshipsBusiness(nextPage)
+                return self.loadEntityFunction(nextPage)
                     .map { .succeedLoad(starships: $0.0, previousPage: $0.1, nextPage: $0.2) }
                     .replaceError(with: .failLoad)
                     .prepend(.startLoad)
                     .eraseToAnyPublisher()
-            }
-        }
-        
-        struct Search: Command {
-            let searchStarshipsBusiness: (String) -> AnyPublisher<[Starship], NetworkError>
-            let query: String
-            
-            func execute(basedOn state: Starships.State) -> AnyPublisher<Starships.Action, Never> {
-                return self.searchStarshipsBusiness(self.query)
-                .map { .succeedLoad(starships: $0, previousPage: nil, nextPage: nil) }
-                .replaceError(with: .failLoad)
-                .prepend(.startLoad)
-                .eraseToAnyPublisher()
             }
         }
     }

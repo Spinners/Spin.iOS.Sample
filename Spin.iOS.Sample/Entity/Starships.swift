@@ -8,20 +8,16 @@
 
 import Combine
 
-enum Starships {
-}
-
 extension Starships {
-    enum Business {
-        static func page(baseUrl: String, networkService: NetworkService, page: Int?) -> AnyPublisher<([Starship], Int?, Int?), NetworkError> {
-            let route = Route<ListEndpoint<Starship>>(baseUrl: baseUrl, endpoint: ListEndpoint<Starship>(path: StarshipsPath.starships))
-            if let page = page {
-                route.set(parameter: ListRequest(page: page))
-            }
-            return networkService.fetchCombine(route: route).map { listResponse -> ([Starship], Int?, Int?) in
+    enum Entity {
+        static func load(loadApisFunction: (Int?) -> AnyPublisher<ListResponse<Starship>, NetworkError>,
+                         isFavoriteFunction: @escaping (String) -> Bool,
+                         page: Int?) -> AnyPublisher<([(Starship, Bool)], Int?, Int?), NetworkError> {
+            return loadApisFunction(page).map { listResponse -> ([(Starship, Bool)], Int?, Int?) in
                 let previousPage = listResponse.previous?.split(separator: "=").last.map { String($0) }.flatMap { Int($0) }
                 let nextPage = listResponse.next?.split(separator: "=").last.map { String($0) }.flatMap { Int($0) }
-                return (listResponse.results, previousPage, nextPage)
+                let planetsAndFavorite = listResponse.results.map { ($0, isFavoriteFunction($0.url)) }
+                return (planetsAndFavorite, previousPage, nextPage)
             }.eraseToAnyPublisher()
         }
         
@@ -30,7 +26,7 @@ extension Starships {
             return networkService.fetchCombine(route: route).map { $0.results }.eraseToAnyPublisher()
         }
         
-        static func load(baseUrl: String, networkService: NetworkService, id: String) -> AnyPublisher<Starship, NetworkError> {
+        static func loadDetail(baseUrl: String, networkService: NetworkService, id: String) -> AnyPublisher<Starship, NetworkError> {
             let route = Route<EntityEndpoint<Starship>>(baseUrl: baseUrl, endpoint: EntityEndpoint<Starship>(path: StarshipsPath.starship(id: id)))
             return networkService.fetchCombine(route: route).eraseToAnyPublisher()
         }

@@ -6,10 +6,10 @@
 //  Copyright © 2019 Spinners. All rights reserved.
 //
 
-extension Planets {
+extension PlanetsFeature {
     enum Action {
         case startLoad
-        case succeedLoad(planets: [Planet], previousPage: Int?, nextPage: Int?)
+        case succeedLoad(planets: [(Planet, Bool)], previousPage: Int?, nextPage: Int?)
         case failLoad
     }
 }

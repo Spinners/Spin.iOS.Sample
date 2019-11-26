@@ -6,10 +6,10 @@
 //  Copyright © 2019 Spinners. All rights reserved.
 //
 
-extension Peoples {
+extension PeoplesFeature {
     enum Action {
         case startLoad
-        case succeedLoad(peoples: [People], previousPage: Int?, nextPage: Int?)
+        case succeedLoad(peoples: [(People, Bool)], previousPage: Int?, nextPage: Int?)
         case failLoad
     }
 }

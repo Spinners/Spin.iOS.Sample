@@ -6,11 +6,11 @@
 //  Copyright © 2019 Spinners. All rights reserved.
 //
 
-extension Starships {
+extension StarshipsFeature {
     enum State {
         case idle
         case loading
-        case loaded(data: [Starship], previousPage: Int?, nextPage: Int?)
+        case loaded(data: [(Starship, Bool)], previousPage: Int?, nextPage: Int?)
         case failed
         
         struct ViewItem {

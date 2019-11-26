@@ -20,10 +20,10 @@ class StarshipsViewController: UIViewController, StoryboardBased {
     
     var disposeBag = [AnyCancellable]()
     
-    private var datasource = [Starship]()
+    private var datasource = [(Starship, Bool)]()
     
-    var commandBuilder: Starships.Commands.Builder!
-    let commandsSubject = PassthroughSubject<AnyCommand<AnyPublisher<Starships.Action, Never>, Starships.State>, Never>()
+    var commandBuilder: StarshipsFeature.Commands.Builder!
+    let commandsSubject = PassthroughSubject<AnyCommand<AnyPublisher<StarshipsFeature.Action, Never>, StarshipsFeature.State>, Never>()
         
     @IBAction func previousTapped(_ sender: UIButton) {
         self.commandsSubject.send(self.commandBuilder.buildPreviousCommand())
@@ -45,13 +45,13 @@ class StarshipsViewController: UIViewController, StoryboardBased {
 }
 
 extension StarshipsViewController {
-    func emitCommands() -> AnyPublisher<AnyCommand<AnyPublisher<Starships.Action, Never>, Starships.State>, Never> {
+    func emitCommands() -> AnyPublisher<AnyCommand<AnyPublisher<StarshipsFeature.Action, Never>, StarshipsFeature.State>, Never> {
         return self.commandsSubject.eraseToAnyPublisher()
     }
 }
 
 extension StarshipsViewController {
-    func interpret(state: Starships.State) -> Void {
+    func interpret(state: StarshipsFeature.State) -> Void {
 
         guard
             self.activityIndicator != nil,
@@ -91,13 +91,14 @@ extension StarshipsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "starshipCell", for: indexPath)
-        cell.textLabel?.text = self.datasource[indexPath.row].name
+        cell.textLabel?.text = self.datasource[indexPath.row].0.name
+        cell.imageView?.image = self.datasource[indexPath.row].1 ? UIImage(systemName: "star.fill") : nil
         return cell
     }
 }
 
 extension StarshipsViewController {
-    static func make(commandBuilder: Starships.Commands.Builder) -> StarshipsViewController {
+    static func make(commandBuilder: StarshipsFeature.Commands.Builder) -> StarshipsViewController {
         let viewController = StarshipsViewController.instantiate()
         viewController.commandBuilder = commandBuilder
         return viewController

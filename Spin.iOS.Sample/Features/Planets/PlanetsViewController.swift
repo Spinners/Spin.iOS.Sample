@@ -10,21 +10,25 @@ import ReactiveSwift
 import Reusable
 import Spin
 import Spin_ReactiveSwift
+import RxFlow
+import RxRelay
 import UIKit
 
-class PlanetsViewController: UIViewController, StoryboardBased {
+class PlanetsViewController: UIViewController, StoryboardBased, Stepper {
     
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var previouxButton: UIButton!
     @IBOutlet private weak var nextButton: UIButton!
-    
+
+    let steps = PublishRelay<Step>()
+
     let disposeBag = CompositeDisposable()
     
-    private var datasource = [Planet]()
+    private var datasource = [(Planet, Bool)]()
     
-    var commandBuilder: Planets.Commands.Builder!
-    let commandSignal = Signal<AnyCommand<SignalProducer<Planets.Action, Never>, Planets.State>, Never>.pipe()
+    var commandBuilder: PlanetsFeature.Commands.Builder!
+    let commandSignal = Signal<AnyCommand<SignalProducer<PlanetsFeature.Action, Never>, PlanetsFeature.State>, Never>.pipe()
 
     @IBAction func previousTapped(_ sender: UIButton) {
         self.commandSignal.input.send(value: self.commandBuilder.buildPreviousCommand())
@@ -37,6 +41,7 @@ class PlanetsViewController: UIViewController, StoryboardBased {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
+        self.tableView.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,13 +51,13 @@ class PlanetsViewController: UIViewController, StoryboardBased {
 }
 
 extension PlanetsViewController {
-    func emitCommands() -> SignalProducer<AnyCommand<SignalProducer<Planets.Action, Never>, Planets.State>, Never> {
+    func emitCommands() -> SignalProducer<AnyCommand<SignalProducer<PlanetsFeature.Action, Never>, PlanetsFeature.State>, Never> {
         return self.commandSignal.output.producer
     }
 }
 
 extension PlanetsViewController {
-    func interpret(state: Planets.State) -> Void {
+    func interpret(state: PlanetsFeature.State) -> Void {
 
         guard
             self.activityIndicator != nil,
@@ -92,16 +97,24 @@ extension PlanetsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "planetCell", for: indexPath)
-        cell.textLabel?.text = self.datasource[indexPath.row].name
+        cell.textLabel?.text = self.datasource[indexPath.row].0.name
+        cell.imageView?.image = self.datasource[indexPath.row].1 ? UIImage(systemName: "star.fill") : nil
         return cell
     }
 }
 
 extension PlanetsViewController {
-    static func make(commandBuilder: Planets.Commands.Builder) -> PlanetsViewController {
+    static func make(commandBuilder: PlanetsFeature.Commands.Builder) -> PlanetsViewController {
         let viewController = PlanetsViewController.instantiate()
         viewController.commandBuilder = commandBuilder
         return viewController
+    }
+}
+
+extension PlanetsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let planet = self.datasource[indexPath.row].0
+        self.steps.accept(AppSteps.planet(planet: planet))
     }
 }
 

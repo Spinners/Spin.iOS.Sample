@@ -6,10 +6,10 @@
 //  Copyright © 2019 Spinners. All rights reserved.
 //
 
-extension Starships {
+extension StarshipsFeature {
     enum Action {
         case startLoad
-        case succeedLoad(starships: [Starship], previousPage: Int?, nextPage: Int?)
+        case succeedLoad(starships: [(Starship, Bool)], previousPage: Int?, nextPage: Int?)
         case failLoad
     }
 }

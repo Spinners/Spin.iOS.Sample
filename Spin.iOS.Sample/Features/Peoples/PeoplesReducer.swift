@@ -6,8 +6,8 @@
 //  Copyright © 2019 Spinners. All rights reserved.
 //
 
-extension Peoples {
-    static func reducer(state: Peoples.State, action: Peoples.Action) -> Peoples.State {
+extension PeoplesFeature {
+    static func reducer(state: PeoplesFeature.State, action: PeoplesFeature.Action) -> PeoplesFeature.State {
         switch action {
         case .startLoad:
             return .loading
